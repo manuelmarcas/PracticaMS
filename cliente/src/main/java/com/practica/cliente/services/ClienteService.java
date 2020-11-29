@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -81,7 +82,6 @@ public class ClienteService {
         direccionService.delete(listaDirecciones);
     }
 
-
     public ResponseEntity<?> getClienteByCiudadAndNombre(String ciudad, String nombre){
 
         List<Direccion> direcciones = direccionService.findByCiudad(ciudad);
@@ -105,7 +105,39 @@ public class ClienteService {
             return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
         }
 
-
     }
+
+
+
+    public Boolean comprobacionEstadoFacturas(Integer idCliente){
+        Application applicationFactura = eurekaClient.getApplication("factura");
+        List<InstanceInfo> instanceInfosFactura = applicationFactura.getInstances();
+
+        String fooResourceUrl = instanceInfosFactura.get(0).getHomePageUrl();
+
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<Boolean> responseFactura
+                = restTemplate.getForEntity(fooResourceUrl + "api/factura/cliente/estado/" + idCliente, Boolean.class);
+        Boolean b = responseFactura.getBody();
+
+        return b;
+    }
+
+
+    @Scheduled(cron = "59 * * * * ?")
+    public void comprobarEstados(){
+        System.out.println("SI EJECUTA EL CRON");
+        List<Cliente> clientes = clienteRepository.findAll();
+
+        for(Cliente c : clientes){
+            if(comprobacionEstadoFacturas(c.getId()))
+                c.setEstado(2);
+            else
+                c.setEstado(1);
+
+            clienteRepository.save(c);
+        }
+    }
+
 
 }

@@ -126,6 +126,15 @@ public class FacturaServiceImp implements IFacturaService {
         }
     }
 
+    public Boolean comprobarEstado(Integer idCliente){
+        List<Factura> facturas = facturaRepository.findByIdCliente(idCliente);
+        for(Factura f : facturas){
+            if(f.getEstado() != 3)
+                return false;
+        }
+        return true;
+    }
+
     public ResponseEntity<?> save(Factura factura){
 
         Map<String, Object> response = new HashMap<>();

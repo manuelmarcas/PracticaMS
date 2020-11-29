@@ -43,6 +43,11 @@ public class FacturaController {
         return facturaService.findByImporte(importe);
     }
 
+    @GetMapping("/cliente/estado/{id}")
+    public Boolean getEstadoParaUsuario(@PathVariable("id") Integer id){
+        return facturaService.comprobarEstado(id);
+    }
+
     @PostMapping("/guardar")
     public ResponseEntity<?> saveFactura(@RequestBody Factura factura){
         return facturaService.save(factura);
