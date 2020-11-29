@@ -16,6 +16,8 @@ public interface IFacturaService{
 
     public ResponseEntity<?> getFacturaEstado(Integer estado);
 
+    public ResponseEntity<?> findByImporte(Float importe);
+
     public ResponseEntity<?> save(Factura factura);
 
     public Factura modify(Factura factura);

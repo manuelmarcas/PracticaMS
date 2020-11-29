@@ -97,6 +97,34 @@ public class FacturaServiceImp implements IFacturaService {
 
     }
 
+    public ResponseEntity<?> findByImporte(Float importe){
+        List<Factura> facturas = facturaRepository.findByImporte(importe);
+        List<FacturaDTO> facturasDTOs = new ArrayList<>();
+
+        Map<String, Object> response = new HashMap<>();
+        if(facturas.size() != 0){
+            String formaPago = formaDePago(facturas.get(0).getFormaPago());
+            for(Factura f : facturas){
+                Cliente cliente = buscarCliente(f.getIdCliente());
+                Visita visita = buscarVisita(f.getLineaFactura());
+                List<Pago> pagos = buscarPagos(f.getId());
+
+                FacturaDTO dto = new FacturaDTO(f.getId(), cliente.getNombre(), f.getImporte(),
+                        formaPago, estadoFactura(f.getEstado()), pagos, visita);
+
+                facturasDTOs.add(dto);
+            }
+
+            response.put("Mensaje", facturas.size() + " facturas obtenidas con importe de " + importe + "€.");
+            response.put("Facturas", facturasDTOs);
+            return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
+
+        }else{
+            response.put("Mensaje", "No hay facturas con ese importe");
+            return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
+        }
+    }
+
     public ResponseEntity<?> save(Factura factura){
 
         Map<String, Object> response = new HashMap<>();

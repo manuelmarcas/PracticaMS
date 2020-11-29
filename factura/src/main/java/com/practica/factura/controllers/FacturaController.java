@@ -38,6 +38,11 @@ public class FacturaController {
         return facturaService.getFacturaEstado(estado);
     }
 
+    @GetMapping("/importe/{importe}")
+    public ResponseEntity<?> getFacturaPorImporte(@PathVariable("importe") Float importe){
+        return facturaService.findByImporte(importe);
+    }
+
     @PostMapping("/guardar")
     public ResponseEntity<?> saveFactura(@RequestBody Factura factura){
         return facturaService.save(factura);

@@ -11,4 +11,6 @@ public interface FacturaRepository extends MongoRepository<Factura, String> {
 
     List<Factura> findByEstado(Integer estado);
 
+    List<Factura> findByImporte(Float importe);
+
 }
