@@ -43,7 +43,14 @@ public class ClienteService {
 
     public Cliente save(Cliente cliente){
         Direccion d = direccionService.save(cliente.getDireccion());
-        //cliente
+        Cliente c = clienteRepository.save(cliente);
+        d.setIdCliente(c.getId());
+        direccionService.save(d);
+        return c;
+    }
+
+    public Cliente modify(Cliente cliente){
+        direccionService.save(cliente.getDireccion());
         return clienteRepository.save(cliente);
     }
 
@@ -78,6 +85,8 @@ public class ClienteService {
     public ResponseEntity<?> getClienteByCiudadAndNombre(String ciudad, String nombre){
 
         List<Direccion> direcciones = direccionService.findByCiudad(ciudad);
+
+
         List<Cliente> clientes = new ArrayList<>();
 
         for(Direccion d : direcciones){
@@ -87,7 +96,7 @@ public class ClienteService {
         }
 
         Map<String, Object> response = new HashMap<>();
-        if(clientes != null){
+        if(clientes.size() != 0){
             response.put("Mensaje", "Estos son los clientes llamados " + nombre + " y que viven en " + ciudad);
             response.put("Clientes", clientes);
             return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);

@@ -36,7 +36,7 @@ public class ClienteController {
 
     @PutMapping("/modificar")
     public Cliente modifyCliente(@RequestBody Cliente cliente){
-        return clienteService.save(cliente);
+        return clienteService.modify(cliente);
     }
 
     @DeleteMapping("/eliminar")
