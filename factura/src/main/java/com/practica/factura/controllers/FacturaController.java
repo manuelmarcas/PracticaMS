@@ -33,6 +33,11 @@ public class FacturaController {
         return facturaService.getFacturaIdCliente(idCliente);
     }
 
+    @GetMapping("/estado/{estado}")
+    public ResponseEntity<?> getFacturaPorEstado(@PathVariable("estado") Integer estado){
+        return facturaService.getFacturaEstado(estado);
+    }
+
     @PostMapping("/guardar")
     public ResponseEntity<?> saveFactura(@RequestBody Factura factura){
         return facturaService.save(factura);

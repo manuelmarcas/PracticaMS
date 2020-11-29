@@ -43,26 +43,55 @@ public class FacturaServiceImp implements IFacturaService {
         List<Factura> facturas = facturaRepository.findByIdCliente(idCliente);
         List<FacturaDTO> facturasDTOs = new ArrayList<>();
 
-        for(Factura f : facturas){
-            Cliente cliente = buscarCliente(idCliente);
-            Visita visita = buscarVisita(f.getLineaFactura());
-            List<Pago> pagos = buscarPagos(f.getId());
-
-            String formaPago = formaDePago(f.getFormaPago());
-            FacturaDTO dto = new FacturaDTO(f.getId(), cliente.getNombre(), f.getImporte(),
-                    formaPago, estadoFactura(f.getEstado()), pagos, visita);
-
-            facturasDTOs.add(dto);
-        }
-
         Map<String, Object> response = new HashMap<>();
-        if(facturasDTOs.size() != 0){
-            response.put("Mensaje", "Facturas obtenidas con éxito");
+        if(facturas.size() != 0){
+            for(Factura f : facturas){
+                Cliente cliente = buscarCliente(idCliente);
+                Visita visita = buscarVisita(f.getLineaFactura());
+                List<Pago> pagos = buscarPagos(f.getId());
+
+                String formaPago = formaDePago(f.getFormaPago());
+                FacturaDTO dto = new FacturaDTO(f.getId(), cliente.getNombre(), f.getImporte(),
+                        formaPago, estadoFactura(f.getEstado()), pagos, visita);
+
+                facturasDTOs.add(dto);
+            }
+
+            response.put("Mensaje", facturas.size() + " facturas obtenidas.");
             response.put("Facturas", facturasDTOs);
             return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
 
         }else{
             response.put("Mensaje", "El cliente no tiene facturas.");
+            return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
+        }
+
+    }
+
+    public ResponseEntity<?> getFacturaEstado(Integer estado){
+        List<Factura> facturas = facturaRepository.findByEstado(estado);
+        List<FacturaDTO> facturasDTOs = new ArrayList<>();
+
+        Map<String, Object> response = new HashMap<>();
+        if(facturas.size() != 0){
+            String formaPago = formaDePago(facturas.get(0).getFormaPago());
+            for(Factura f : facturas){
+                Cliente cliente = buscarCliente(f.getIdCliente());
+                Visita visita = buscarVisita(f.getLineaFactura());
+                List<Pago> pagos = buscarPagos(f.getId());
+
+                FacturaDTO dto = new FacturaDTO(f.getId(), cliente.getNombre(), f.getImporte(),
+                        formaPago, estadoFactura(f.getEstado()), pagos, visita);
+
+                facturasDTOs.add(dto);
+            }
+
+            response.put("Mensaje", facturas.size() + " facturas obtenidas.");
+            response.put("Facturas", facturasDTOs);
+            return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
+
+        }else{
+            response.put("Mensaje", "No hay facturas con ese estado");
             return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
         }
 
@@ -182,7 +211,6 @@ public class FacturaServiceImp implements IFacturaService {
         ResponseEntity<Pago[]> responsePago
                 = restTemplate.getForEntity(fooResourceUrl + "api/pago/factura/" + idFactura, Pago[].class);
 
-        System.out.println(responsePago.getBody().length);
         for(int i=0; i<responsePago.getBody().length; i++)
             pagos.add(responsePago.getBody()[i]);
 

@@ -14,6 +14,8 @@ public interface IFacturaService{
 
     public ResponseEntity<?> getFacturaIdCliente(Integer idCliente);
 
+    public ResponseEntity<?> getFacturaEstado(Integer estado);
+
     public ResponseEntity<?> save(Factura factura);
 
     public Factura modify(Factura factura);
