@@ -3,6 +3,7 @@ package com.practica.visita.controllers;
 import com.practica.instancias.domain.Visita;
 import com.practica.visita.services.IVisitaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,6 +25,11 @@ public class VisitaController {
     @GetMapping("/{id}")
     public Visita getVisita(@PathVariable("id") int id){
         return visitaService.getVisitaId(id);
+    }
+
+    @GetMapping("/cliente/{id}")
+    public ResponseEntity<?> getVisitaCliente(@PathVariable("id") int idCliente){
+        return visitaService.getVisitaByIdCliente(idCliente);
     }
 
     @PostMapping("/guardar")

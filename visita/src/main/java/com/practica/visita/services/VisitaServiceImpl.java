@@ -1,16 +1,20 @@
 package com.practica.visita.services;
 
+import com.netflix.appinfo.InstanceInfo;
 import com.netflix.discovery.EurekaClient;
+import com.netflix.discovery.shared.Application;
+import com.practica.instancias.domain.Cliente;
 import com.practica.instancias.domain.Visita;
 import com.practica.instancias.domain.Direccion;
 import com.practica.visita.repositories.VisitaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class VisitaServiceImpl implements IVisitaService {
@@ -32,6 +36,28 @@ public class VisitaServiceImpl implements IVisitaService {
         return visitaRepository.findById(id);
     }
 
+    public ResponseEntity<?> getVisitaByIdCliente(int idCliente){
+
+        Cliente c = buscarCliente(idCliente);
+        List<Visita> visitas = visitaRepository.findByIdCliente(idCliente);
+        Map<String, Object> response = new HashMap<>();
+
+        if(c == null){
+            response.put("Mensaje", "No hay ningún usuario con ese id");
+            return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+        if(visitas.size() != 0){
+            response.put("Mensaje", "El usuario " + c.getNombre() + " tiene " + visitas.size() + " visitas.");
+            response.put("Visitas", visitas);
+            return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
+        }else{
+            response.put("Mensaje", "No hay ninguna visita de ese usuario.");
+            return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
+        }
+
+    }
+
     public Visita save(Visita visita){
         return visitaRepository.save(visita);
     }
@@ -51,6 +77,24 @@ public class VisitaServiceImpl implements IVisitaService {
         listaVisitas.add(c);
 
         visitaRepository.deleteInBatch(listaVisitas);
+    }
+
+
+
+
+    public Cliente buscarCliente(Integer idCliente){
+
+        Application applicationCliente = eurekaClient.getApplication("cliente");
+        List<InstanceInfo> instanceInfosCliente = applicationCliente.getInstances();
+
+        String fooResourceUrl = instanceInfosCliente.get(0).getHomePageUrl();
+
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<Cliente> responseCliente
+                = restTemplate.getForEntity(fooResourceUrl + "api/cliente/" + idCliente, Cliente.class);
+        Cliente c = responseCliente.getBody();
+
+        return c;
     }
     
 }
