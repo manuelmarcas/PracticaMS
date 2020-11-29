@@ -14,6 +14,12 @@ public class Visita {
     @Column(name = "fecha")
     private Date fecha;
 
+    @Column(name = "importe")
+    private Float importe;
+
+    @Column(name = "id_cliente")
+    private int idCliente;
+
     @Column(name = "estado")
     private Boolean estado;
 
@@ -33,6 +39,22 @@ public class Visita {
 
     public void setFecha(Date fecha) {
         this.fecha = fecha;
+    }
+
+    public Float getImporte() {
+        return importe;
+    }
+
+    public void setImporte(Float importe) {
+        this.importe = importe;
+    }
+
+    public int getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
     }
 
     public Boolean getEstado() {
