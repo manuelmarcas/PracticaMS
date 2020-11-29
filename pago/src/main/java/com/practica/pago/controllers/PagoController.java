@@ -32,7 +32,6 @@ public class PagoController {
         return pagoService.getPagoIdFactura(idFactura);
     }
 
-
     @PostMapping("/guardar")
     public Pago savePago(@RequestBody Pago pago){
         return pagoService.save(pago);
@@ -40,7 +39,7 @@ public class PagoController {
 
     @PutMapping("/modificar")
     public Pago modifyPago(@RequestBody Pago pago){
-        return pagoService.save(pago);
+        return pagoService.modify(pago);
     }
 
     @DeleteMapping("/eliminar")

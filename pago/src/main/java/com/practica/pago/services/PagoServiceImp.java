@@ -39,6 +39,14 @@ public class PagoServiceImp implements IPagoService {
         return pagoRepository.save(Pago);
     }
 
+    public Pago modify(Pago pago){
+        Optional<Pago> pagoAntiguo = pagoRepository.findById(pago.getId());
+        pago.setPago(pagoAntiguo.get().getPago());
+        pago.setIdFactura(pagoAntiguo.get().getIdFactura());
+
+        return pagoRepository.save(pago);
+    }
+
     public void delete(Pago Pago){
         pagoRepository.delete(Pago);
     }

@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -237,7 +238,7 @@ public class FacturaServiceImp implements IFacturaService {
 
 
 
-
+    //METODOS DE LLAMADAS A OTROS MICROSERVICIOS
     public Cliente buscarCliente(Integer idCliente){
 
         Application applicationCliente = eurekaClient.getApplication("cliente");
@@ -359,7 +360,7 @@ public class FacturaServiceImp implements IFacturaService {
     }
 
 
-
+    //METODOS DE ESTADOS
     public String formaDePago(Integer formaPago){
         if(formaPago == 1)
             return "Un pago";
@@ -378,6 +379,29 @@ public class FacturaServiceImp implements IFacturaService {
             return "Pagada parcialmente";
         else
             return "Pagada";
+    }
+
+
+    @Scheduled(cron = "59 * * * * ?")
+    public void comprobarEstados(){
+        System.out.println("SI EJECUTA EL CRON");
+        List<Factura> facturas = facturaRepository.findAll();
+
+        for(Factura f : facturas){
+            List<Pago> pagos = buscarPagos(f.getId());
+            Integer numeroPagados = 0;
+            for(Pago p : pagos){
+                if(p.getEstado() == 2)
+                    numeroPagados++;
+            }
+
+            if(numeroPagados == pagos.size())
+                f.setEstado(3);
+            else if(numeroPagados > 0 && numeroPagados < pagos.size())
+                f.setEstado(2);
+
+            facturaRepository.save(f);
+        }
     }
 
 

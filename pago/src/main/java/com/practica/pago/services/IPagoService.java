@@ -16,6 +16,8 @@ public interface IPagoService {
 
     public Pago save(Pago pago);
 
+    public Pago modify(Pago pago);
+
     public void delete(Pago pago);
 
     public void deleteById(String id);
