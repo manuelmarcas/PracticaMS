@@ -8,6 +8,7 @@ import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.practica.cliente.repositories.ClienteRepository;
 import com.practica.instancias.domain.Cliente;
 import com.practica.instancias.domain.Direccion;
+import org.apache.logging.log4j.spi.ObjectThreadContextMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
@@ -15,9 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class ClienteService {
@@ -78,7 +77,25 @@ public class ClienteService {
 
     public ResponseEntity<?> getClienteByCiudadAndNombre(String ciudad, String nombre){
 
-        List<Direccion> direcciones
+        List<Direccion> direcciones = direccionService.findByCiudad(ciudad);
+        List<Cliente> clientes = new ArrayList<>();
+
+        for(Direccion d : direcciones){
+            Cliente c = clienteRepository.findById(d.getIdCliente());
+            if(c.getNombre().equals(nombre))
+                clientes.add(c);
+        }
+
+        Map<String, Object> response = new HashMap<>();
+        if(clientes != null){
+            response.put("Mensaje", "Estos son los clientes llamados " + nombre + " y que viven en " + ciudad);
+            response.put("Clientes", clientes);
+            return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
+        }else{
+            response.put("Mensaje", "No hay clientes llamados " + nombre + " y que vivan en " + ciudad);
+            return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
+        }
+
 
     }
 

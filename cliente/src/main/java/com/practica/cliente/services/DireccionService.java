@@ -22,8 +22,8 @@ public class DireccionService {
     public void delete(List<Direccion> direcciones){
         direccionRepository.deleteInBatch(direcciones);
     }
-    /*public Direccion findByCiudadAndCalleAndNumero(String ciudad, String calle, int numero){
-        return direccionRepository.findByCiudadAndCalleAndNumero(ciudad, calle, numero);
-    }*/
+    public List<Direccion> findByCiudad(String ciudad){
+        return direccionRepository.findByCiudad(ciudad);
+    }
 
 }
