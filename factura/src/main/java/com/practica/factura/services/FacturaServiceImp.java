@@ -166,8 +166,54 @@ public class FacturaServiceImp implements IFacturaService {
 
     }
 
-    public Factura modify(Factura factura){
-        return facturaRepository.save(factura);
+    public ResponseEntity<?> modify(Factura factura){
+
+        Map<String, Object> response = new HashMap<>();
+        Optional<Factura> facturaAntigua = facturaRepository.findById(factura.getId());
+        if(!facturaAntigua.isPresent()){
+            response.put("Mensaje", "No existe ninguna factura con ese id.");
+            return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+        }else if(facturaAntigua.get().getEstado() != 1){
+            response.put("Mensaje", "No se puede modificar la factura porque necesita tener el estado PENDIENTE.");
+            return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        else if(factura.getFormaPago() < 1 || factura.getFormaPago() > 3){
+            response.put("Mensaje", "La forma de pago solo puede ser de 1, 2 o 3 pagos.");
+            return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+        Cliente c = buscarCliente(factura.getIdCliente());
+
+        if(c != null){
+
+            Factura f = new Factura();
+            factura.setEstado(1);
+            factura.setLineaFactura(facturaAntigua.get().getLineaFactura());
+            f = facturaRepository.save(factura);
+
+            //BUSCA LA VISITA ASOCIADA A LA FACTURA
+            Visita visita = buscarVisita(f.getLineaFactura());
+
+            //ELIMINA LOS PAGOS ANTIGUOS
+            eliminarPagos(f.getId());
+            //SE CREAN LOS NUEVOS PAGOS Y SE GUARDAN
+            List<Pago> pagosCreados = crearPagos(f);
+
+            //SE FORMA EL DTO
+            String formaPago = formaDePago(f.getFormaPago());
+
+            FacturaDTO dto = new FacturaDTO(f.getId(), c.getNombre(), f.getImporte(),
+                    formaPago, estadoFactura(f.getEstado()), pagosCreados, visita);
+
+            response.put("Mensaje", "Modificada la factura correctamente");
+            response.put("Factura", dto);
+            return new ResponseEntity<Map<String, Object>>(response, HttpStatus.CREATED);
+
+        }else{
+            response.put("Mensaje", "No existe ningún usuario con ese id.");
+            return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
     }
 
     public void delete(Factura factura){
@@ -229,13 +275,13 @@ public class FacturaServiceImp implements IFacturaService {
     public List<Pago> buscarPagos(String idFactura){
 
         Application applicationVisita = eurekaClient.getApplication("pago");
-        List<InstanceInfo> instanceInfosVisita = applicationVisita.getInstances();
+        List<InstanceInfo> instanceInfosPago = applicationVisita.getInstances();
 
         List<Pago> pagos = new ArrayList<>();
 
         RestTemplate restTemplate = new RestTemplate();
 
-        String fooResourceUrl = instanceInfosVisita.get(0).getHomePageUrl();
+        String fooResourceUrl = instanceInfosPago.get(0).getHomePageUrl();
         ResponseEntity<Pago[]> responsePago
                 = restTemplate.getForEntity(fooResourceUrl + "api/pago/factura/" + idFactura, Pago[].class);
 
@@ -290,6 +336,25 @@ public class FacturaServiceImp implements IFacturaService {
         }
 
         return pagosCreados;
+
+    }
+
+    public void eliminarPagos(String idFactura){
+
+        Application applicationPago = eurekaClient.getApplication("pago");
+        List<InstanceInfo> instanceInfosPago = applicationPago.getInstances();
+
+        List<Pago> pagos = new ArrayList<>();
+
+        RestTemplate restTemplate = new RestTemplate();
+
+        String fooResourceUrl = instanceInfosPago.get(0).getHomePageUrl();
+        ResponseEntity<Pago[]> responsePago
+                = restTemplate.getForEntity(fooResourceUrl + "api/pago/factura/" + idFactura, Pago[].class);
+
+        //ELIMINA LOS GRUPOS ANTIGUOS
+        for(int i=0; i<responsePago.getBody().length; i++)
+            restTemplate.delete(fooResourceUrl + "api/pago/eliminar/" + responsePago.getBody()[i].getId());
 
     }
 

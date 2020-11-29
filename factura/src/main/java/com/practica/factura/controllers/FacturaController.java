@@ -49,7 +49,7 @@ public class FacturaController {
     }
 
     @PutMapping("/modificar")
-    public Factura modifyFactura(@RequestBody Factura factura){
+    public ResponseEntity<?> modifyFactura(@RequestBody Factura factura){
         return facturaService.modify(factura);
     }
 

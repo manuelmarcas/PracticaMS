@@ -20,7 +20,7 @@ public interface IFacturaService{
 
     public ResponseEntity<?> save(Factura factura);
 
-    public Factura modify(Factura factura);
+    public ResponseEntity<?> modify(Factura factura);
 
     public void delete(Factura factura);
 
