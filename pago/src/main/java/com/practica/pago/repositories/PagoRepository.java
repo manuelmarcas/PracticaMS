@@ -6,4 +6,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 public interface PagoRepository extends MongoRepository<Pago, String> {
 
+    Pago[] findByIdFactura(String idFactura);
+
 }

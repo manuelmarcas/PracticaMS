@@ -31,6 +31,10 @@ public class PagoServiceImp implements IPagoService {
         return pagoRepository.findById(id);
     }
 
+    public Pago[] getPagoIdFactura(String idFactura){
+        return pagoRepository.findByIdFactura(idFactura);
+    }
+
     public Pago save(Pago Pago){
         return pagoRepository.save(Pago);
     }

@@ -39,6 +39,35 @@ public class FacturaServiceImp implements IFacturaService {
         return facturaRepository.findById(id);
     }
 
+    public ResponseEntity<?> getFacturaIdCliente(Integer idCliente){
+        List<Factura> facturas = facturaRepository.findByIdCliente(idCliente);
+        List<FacturaDTO> facturasDTOs = new ArrayList<>();
+
+        for(Factura f : facturas){
+            Cliente cliente = buscarCliente(idCliente);
+            Visita visita = buscarVisita(f.getLineaFactura());
+            List<Pago> pagos = buscarPagos(f.getId());
+
+            String formaPago = formaDePago(f.getFormaPago());
+            FacturaDTO dto = new FacturaDTO(f.getId(), cliente.getNombre(), f.getImporte(),
+                    formaPago, estadoFactura(f.getEstado()), pagos, visita);
+
+            facturasDTOs.add(dto);
+        }
+
+        Map<String, Object> response = new HashMap<>();
+        if(facturasDTOs.size() != 0){
+            response.put("Mensaje", "Facturas obtenidas con éxito");
+            response.put("Facturas", facturasDTOs);
+            return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
+
+        }else{
+            response.put("Mensaje", "El cliente no tiene facturas.");
+            return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
+        }
+
+    }
+
     public ResponseEntity<?> save(Factura factura){
 
         Map<String, Object> response = new HashMap<>();
@@ -64,16 +93,10 @@ public class FacturaServiceImp implements IFacturaService {
             List<Pago> pagosCreados = crearPagos(f);
 
             //SE FORMA EL DTO
-            String formaPago;
-            if(f.getFormaPago() == 1)
-                formaPago = "Un pago";
-            else if(f.getFormaPago() == 1)
-                formaPago = "Dos pagos";
-            else
-                formaPago = "Tres pagos";
+            String formaPago = formaDePago(f.getFormaPago());
 
             FacturaDTO dto = new FacturaDTO(f.getId(), c.getNombre(), f.getImporte(),
-                    formaPago, "Pendiente de pago", pagosCreados, visitaCreada);
+                    formaPago, estadoFactura(f.getEstado()), pagosCreados, visitaCreada);
 
             response.put("Mensaje", "Creada con exito la factura junto con los pagos y la visita");
             response.put("Factura", dto);
@@ -83,7 +106,6 @@ public class FacturaServiceImp implements IFacturaService {
             response.put("Mensaje", "No existe ningún usuario con ese id.");
             return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-
 
     }
 
@@ -108,8 +130,9 @@ public class FacturaServiceImp implements IFacturaService {
             facturaRepository.delete(factura);
         }
 
-        
     }
+
+
 
 
     public Cliente buscarCliente(Integer idCliente){
@@ -127,6 +150,45 @@ public class FacturaServiceImp implements IFacturaService {
         return c;
     }
 
+    public Visita buscarVisita(Integer idVisita){
+
+        Application applicationVisita = eurekaClient.getApplication("visita");
+        List<InstanceInfo> instanceInfosVisita = applicationVisita.getInstances();
+
+        Visita v = new Visita();
+
+        RestTemplate restTemplate = new RestTemplate();
+
+        String fooResourceUrl = instanceInfosVisita.get(0).getHomePageUrl();
+        ResponseEntity<Visita> responseVisita
+                = restTemplate.getForEntity(fooResourceUrl + "api/visita/" + idVisita, Visita.class);
+
+        v = responseVisita.getBody();
+
+        return v;
+
+    }
+
+    public List<Pago> buscarPagos(String idFactura){
+
+        Application applicationVisita = eurekaClient.getApplication("pago");
+        List<InstanceInfo> instanceInfosVisita = applicationVisita.getInstances();
+
+        List<Pago> pagos = new ArrayList<>();
+
+        RestTemplate restTemplate = new RestTemplate();
+
+        String fooResourceUrl = instanceInfosVisita.get(0).getHomePageUrl();
+        ResponseEntity<Pago[]> responsePago
+                = restTemplate.getForEntity(fooResourceUrl + "api/pago/factura/" + idFactura, Pago[].class);
+
+        System.out.println(responsePago.getBody().length);
+        for(int i=0; i<responsePago.getBody().length; i++)
+            pagos.add(responsePago.getBody()[i]);
+
+        return pagos;
+
+    }
 
     public Visita crearVisita(){
 
@@ -144,7 +206,6 @@ public class FacturaServiceImp implements IFacturaService {
                 = restTemplate.postForEntity(fooResourceUrl + "api/visita/guardar", v, Visita.class);
 
         v = responseVisita.getBody();
-        System.out.println(v.getFecha() + ", " + v.getId());
 
         return v;
 
@@ -174,6 +235,28 @@ public class FacturaServiceImp implements IFacturaService {
 
         return pagosCreados;
 
+    }
+
+
+
+    public String formaDePago(Integer formaPago){
+        if(formaPago == 1)
+            return "Un pago";
+        else if(formaPago == 2)
+            return "Dos pagos";
+        else
+            return "Tres pagos";
+    }
+
+    public String estadoFactura(Integer estado){
+        if(estado == 0)
+            return "Impagada";
+        else if(estado == 1)
+            return "Pendiente de pago";
+        else if(estado == 2)
+            return "Pagada parcialmente";
+        else
+            return "Pagada";
     }
 
 

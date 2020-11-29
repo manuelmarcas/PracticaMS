@@ -28,6 +28,11 @@ public class FacturaController {
         return facturaService.getFacturaId(id);
     }
 
+    @GetMapping("/cliente/{id}")
+    public ResponseEntity<?> getFacturaPorIdCliente(@PathVariable("id") Integer idCliente){
+        return facturaService.getFacturaIdCliente(idCliente);
+    }
+
     @PostMapping("/guardar")
     public ResponseEntity<?> saveFactura(@RequestBody Factura factura){
         return facturaService.save(factura);

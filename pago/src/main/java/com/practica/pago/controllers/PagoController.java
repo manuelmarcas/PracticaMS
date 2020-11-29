@@ -27,6 +27,12 @@ public class PagoController {
         return pagoService.getPagoId(id);
     }
 
+    @GetMapping("/factura/{id}")
+    public Pago[] getPagoIdFactura(@PathVariable("id") String idFactura){
+        return pagoService.getPagoIdFactura(idFactura);
+    }
+
+
     @PostMapping("/guardar")
     public Pago savePago(@RequestBody Pago pago){
         return pagoService.save(pago);

@@ -12,6 +12,8 @@ public interface IPagoService {
 
     public Optional<Pago> getPagoId(String id);
 
+    public Pago[] getPagoIdFactura(String idFactura);
+
     public Pago save(Pago pago);
 
     public void delete(Pago pago);
