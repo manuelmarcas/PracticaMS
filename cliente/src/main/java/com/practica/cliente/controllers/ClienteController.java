@@ -4,6 +4,7 @@ import com.practica.cliente.services.ClienteService;
 import com.practica.instancias.domain.Cliente;
 import com.practica.instancias.domain.Direccion;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -46,6 +47,12 @@ public class ClienteController {
     @DeleteMapping("/eliminar/{id}")
     public void deleteClienteById(@PathVariable("id") int id){
         clienteService.deleteById(id);
+    }
+
+    @GetMapping("/{ciudad}/{nombre}")
+    public ResponseEntity<?> GetClienteByCiudadYNombre(@PathVariable("ciudad") String ciudad,
+                                                       @PathVariable("nombre") String nombre){
+        return clienteService.getClienteByCiudadAndNombre(ciudad, nombre);
     }
 
 

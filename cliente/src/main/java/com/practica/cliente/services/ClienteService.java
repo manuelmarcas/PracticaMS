@@ -76,4 +76,10 @@ public class ClienteService {
     }
 
 
+    public ResponseEntity<?> getClienteByCiudadAndNombre(String ciudad, String nombre){
+
+        List<Direccion> direcciones
+
+    }
+
 }
