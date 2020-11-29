@@ -144,11 +144,14 @@ public class FacturaServiceImp implements IFacturaService {
         }
 
         Cliente c = buscarCliente(factura.getIdCliente());
-
+        System.out.println("SI EJECUTA EL metodo");
         if(c != null){
+            System.out.println("SI ENTRA DENTRO DEL IF");
 
             //SE CREA LA VISITA Y SE GUARDA
-            Visita visitaCreada = crearVisita();
+            System.out.println("1: " + factura.getImporte());
+            System.out.println("1: " + factura.getIdCliente());
+            Visita visitaCreada = crearVisita(factura.getImporte(), factura.getIdCliente());
 
             //SE GUARDA LA FACTURA
             Factura f = new Factura();
@@ -302,14 +305,19 @@ public class FacturaServiceImp implements IFacturaService {
 
     }
 
-    public Visita crearVisita(){
+    public Visita crearVisita(Float importe, Integer idCliente){
 
         Application applicationVisita = eurekaClient.getApplication("visita");
         List<InstanceInfo> instanceInfosVisita = applicationVisita.getInstances();
 
         Visita v = new Visita();
         v.setFecha(new Date());
+        v.setImporte(importe);
+        v.setIdCliente(idCliente);
         v.setEstado(true);
+
+        System.out.println("2: " + v.getImporte());
+        System.out.println("2: " + v.getIdCliente());
 
         RestTemplate restTemplate = new RestTemplate();
 
@@ -318,6 +326,7 @@ public class FacturaServiceImp implements IFacturaService {
                 = restTemplate.postForEntity(fooResourceUrl + "api/visita/guardar", v, Visita.class);
 
         v = responseVisita.getBody();
+        System.out.println(v.getIdCliente() + " " + v.getImporte());
 
         return v;
 
