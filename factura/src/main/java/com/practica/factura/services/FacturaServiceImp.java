@@ -402,7 +402,6 @@ public class FacturaServiceImp implements IFacturaService {
 
     @Scheduled(cron = "59 * * * * ?")
     public void comprobarEstados(){
-        System.out.println("SI EJECUTA EL CRON");
         List<Factura> facturas = facturaRepository.findAll();
 
         for(Factura f : facturas){
