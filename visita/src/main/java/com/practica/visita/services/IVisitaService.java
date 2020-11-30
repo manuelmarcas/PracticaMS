@@ -15,6 +15,8 @@ public interface IVisitaService {
 
     public ResponseEntity<?> getVisitaByIdCliente(int idCliente);
 
+    public ResponseEntity<?> getVisitaByEstado(Integer estado);
+
     public Visita save(Visita visita);
 
     public void delete(Visita visita);

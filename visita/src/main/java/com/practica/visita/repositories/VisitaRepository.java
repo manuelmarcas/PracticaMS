@@ -11,4 +11,6 @@ public interface VisitaRepository extends JpaRepository<Visita, Integer> {
 
     List<Visita> findByIdCliente(int idCliente);
 
+    List<Visita> findByEstado(boolean estado);
+
 }

@@ -32,6 +32,11 @@ public class VisitaController {
         return visitaService.getVisitaByIdCliente(idCliente);
     }
 
+    @GetMapping("/estado/{estado}")
+    public ResponseEntity<?> getVisitaCliente(@PathVariable("estado") Integer estado){
+        return visitaService.getVisitaByEstado(estado);
+    }
+
     @PostMapping("/guardar")
     public Visita saveVisita(@RequestBody Visita visita){
         return visitaService.save(visita);

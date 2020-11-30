@@ -58,6 +58,28 @@ public class VisitaServiceImpl implements IVisitaService {
 
     }
 
+    public ResponseEntity<?> getVisitaByEstado(Integer estado){
+
+        List<Visita> visitas = new ArrayList<>();
+        Map<String, Object> response = new HashMap<>();
+
+
+
+        if(estado == 0){
+            visitas = visitaRepository.findByEstado(false);
+            response.put("Mensaje", "Hay " + visitas.size() + " con el estado NO FACTURADA.");
+            response.put("Visitas", visitas);
+            return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
+        }else{
+            visitas = visitaRepository.findByEstado(true);
+            response.put("Mensaje", "Hay " + visitas.size() + " con el estado FACTURADA.");
+            response.put("Visitas", visitas);
+            return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
+        }
+
+    }
+
+
     public Visita save(Visita visita){
         return visitaRepository.save(visita);
     }
