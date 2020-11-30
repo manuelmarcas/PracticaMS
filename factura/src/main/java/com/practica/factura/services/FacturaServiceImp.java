@@ -3,8 +3,10 @@ package com.practica.factura.services;
 import com.netflix.appinfo.InstanceInfo;
 import com.netflix.discovery.EurekaClient;
 import com.netflix.discovery.shared.Application;
+import com.practica.entidadesdto.domain.PagoDTO;
+import com.practica.entidadesdto.domain.FacturaDTO;
+import com.practica.entidadesdto.domain.VisitaDTO;
 import com.practica.factura.repositories.FacturaRepository;
-import com.practica.instancias.DTOs.FacturaDTO;
 import com.practica.instancias.domain.Cliente;
 import com.practica.instancias.domain.Visita;
 import com.practica.instancias_mongo.domain.Factura;
@@ -48,8 +50,8 @@ public class FacturaServiceImp implements IFacturaService {
         if(facturas.size() != 0){
             for(Factura f : facturas){
                 Cliente cliente = buscarCliente(idCliente);
-                Visita visita = buscarVisita(f.getLineaFactura());
-                List<Pago> pagos = buscarPagos(f.getId());
+                VisitaDTO visita = buscarVisita(f.getLineaFactura());
+                List<PagoDTO> pagos = buscarPagos(f.getId());
 
                 String formaPago = formaDePago(f.getFormaPago());
                 FacturaDTO dto = new FacturaDTO(f.getId(), cliente.getNombre(), f.getImporte(),
@@ -78,8 +80,8 @@ public class FacturaServiceImp implements IFacturaService {
             String formaPago = formaDePago(facturas.get(0).getFormaPago());
             for(Factura f : facturas){
                 Cliente cliente = buscarCliente(f.getIdCliente());
-                Visita visita = buscarVisita(f.getLineaFactura());
-                List<Pago> pagos = buscarPagos(f.getId());
+                VisitaDTO visita = buscarVisita(f.getLineaFactura());
+                List<PagoDTO> pagos = buscarPagos(f.getId());
 
                 FacturaDTO dto = new FacturaDTO(f.getId(), cliente.getNombre(), f.getImporte(),
                         formaPago, estadoFactura(f.getEstado()), pagos, visita);
@@ -107,8 +109,8 @@ public class FacturaServiceImp implements IFacturaService {
             String formaPago = formaDePago(facturas.get(0).getFormaPago());
             for(Factura f : facturas){
                 Cliente cliente = buscarCliente(f.getIdCliente());
-                Visita visita = buscarVisita(f.getLineaFactura());
-                List<Pago> pagos = buscarPagos(f.getId());
+                VisitaDTO visita = buscarVisita(f.getLineaFactura());
+                List<PagoDTO> pagos = buscarPagos(f.getId());
 
                 FacturaDTO dto = new FacturaDTO(f.getId(), cliente.getNombre(), f.getImporte(),
                         formaPago, estadoFactura(f.getEstado()), pagos, visita);
@@ -151,7 +153,7 @@ public class FacturaServiceImp implements IFacturaService {
             //SE CREA LA VISITA Y SE GUARDA
             System.out.println("1: " + factura.getImporte());
             System.out.println("1: " + factura.getIdCliente());
-            Visita visitaCreada = crearVisita(factura.getImporte(), factura.getIdCliente());
+            VisitaDTO visitaCreada = crearVisita(factura.getImporte(), factura.getIdCliente());
 
             //SE GUARDA LA FACTURA
             Factura f = new Factura();
@@ -160,7 +162,7 @@ public class FacturaServiceImp implements IFacturaService {
             f = facturaRepository.save(factura);
 
             //SE CREAN LOS PAGOS Y SE GUARDAN
-            List<Pago> pagosCreados = crearPagos(f);
+            List<PagoDTO> pagosCreados = crearPagos(f);
 
             //SE FORMA EL DTO
             String formaPago = formaDePago(f.getFormaPago());
@@ -205,12 +207,12 @@ public class FacturaServiceImp implements IFacturaService {
             f = facturaRepository.save(factura);
 
             //BUSCA LA VISITA ASOCIADA A LA FACTURA
-            Visita visita = buscarVisita(f.getLineaFactura());
+            VisitaDTO visita = buscarVisita(f.getLineaFactura());
 
             //ELIMINA LOS PAGOS ANTIGUOS
             eliminarPagos(f.getId());
             //SE CREAN LOS NUEVOS PAGOS Y SE GUARDAN
-            List<Pago> pagosCreados = crearPagos(f);
+            List<PagoDTO> pagosCreados = crearPagos(f);
 
             //SE FORMA EL DTO
             String formaPago = formaDePago(f.getFormaPago());
@@ -266,7 +268,7 @@ public class FacturaServiceImp implements IFacturaService {
         return c;
     }
 
-    public Visita buscarVisita(Integer idVisita){
+    public VisitaDTO buscarVisita(Integer idVisita){
 
         Application applicationVisita = eurekaClient.getApplication("visita");
         List<InstanceInfo> instanceInfosVisita = applicationVisita.getInstances();
@@ -280,17 +282,17 @@ public class FacturaServiceImp implements IFacturaService {
                 = restTemplate.getForEntity(fooResourceUrl + "api/visita/" + idVisita, Visita.class);
 
         v = responseVisita.getBody();
-
-        return v;
+        String estadoVisita = estadoVisita(v.getEstado());
+        return new VisitaDTO(v.getId(), v.getFecha(), v.getImporte(), v.getIdCliente(), estadoVisita);
 
     }
 
-    public List<Pago> buscarPagos(String idFactura){
+    public List<PagoDTO> buscarPagos(String idFactura){
 
         Application applicationVisita = eurekaClient.getApplication("pago");
         List<InstanceInfo> instanceInfosPago = applicationVisita.getInstances();
 
-        List<Pago> pagos = new ArrayList<>();
+        List<PagoDTO> pagos = new ArrayList<>();
 
         RestTemplate restTemplate = new RestTemplate();
 
@@ -298,14 +300,19 @@ public class FacturaServiceImp implements IFacturaService {
         ResponseEntity<Pago[]> responsePago
                 = restTemplate.getForEntity(fooResourceUrl + "api/pago/factura/" + idFactura, Pago[].class);
 
-        for(int i=0; i<responsePago.getBody().length; i++)
-            pagos.add(responsePago.getBody()[i]);
+        for(int i=0; i<responsePago.getBody().length; i++) {
+            String estado = estadoPago(responsePago.getBody()[i].getEstado());
+
+            pagos.add(new PagoDTO(responsePago.getBody()[i].getId(), responsePago.getBody()[i].getPago(),
+                    estado, responsePago.getBody()[i].getIdFactura()));
+        }
+
 
         return pagos;
 
     }
 
-    public Visita crearVisita(Float importe, Integer idCliente){
+    public VisitaDTO crearVisita(Float importe, Integer idCliente){
 
         Application applicationVisita = eurekaClient.getApplication("visita");
         List<InstanceInfo> instanceInfosVisita = applicationVisita.getInstances();
@@ -326,13 +333,12 @@ public class FacturaServiceImp implements IFacturaService {
                 = restTemplate.postForEntity(fooResourceUrl + "api/visita/guardar", v, Visita.class);
 
         v = responseVisita.getBody();
-        System.out.println(v.getIdCliente() + " " + v.getImporte());
-
-        return v;
+        String estadoVisita = estadoVisita(v.getEstado());
+        return new VisitaDTO(v.getId(), v.getFecha(), v.getImporte(), v.getIdCliente(), estadoVisita);
 
     }
 
-    public List<Pago> crearPagos(Factura factura){
+    public List<PagoDTO> crearPagos(Factura factura){
 
         Application applicationPago = eurekaClient.getApplication("pago");
         List<InstanceInfo> instanceInfosPago = applicationPago.getInstances();
@@ -343,7 +349,7 @@ public class FacturaServiceImp implements IFacturaService {
         float pagos = factura.getImporte() / (float)factura.getFormaPago();
         p.setPago(pagos);
 
-        List<Pago> pagosCreados = new ArrayList<>();
+        List<PagoDTO> pagosCreados = new ArrayList<>();
 
         RestTemplate restTemplate = new RestTemplate();
         String fooResourceUrl = instanceInfosPago.get(0).getHomePageUrl();
@@ -351,7 +357,10 @@ public class FacturaServiceImp implements IFacturaService {
         for(int i=0; i<factura.getFormaPago(); i++) {
             ResponseEntity<Pago> responsePago
                     = restTemplate.postForEntity(fooResourceUrl + "api/pago/guardar", p, Pago.class);
-            pagosCreados.add(responsePago.getBody());
+
+            String estado = estadoPago(responsePago.getBody().getEstado());
+            pagosCreados.add(new PagoDTO(responsePago.getBody().getId(), responsePago.getBody().getPago(),
+                   estado , responsePago.getBody().getIdFactura());
         }
 
         return pagosCreados;
@@ -399,16 +408,32 @@ public class FacturaServiceImp implements IFacturaService {
             return "Pagada";
     }
 
+    public String estadoPago(Integer estado){
+        if(estado == 0)
+            return "Impagado";
+        else if(estado == 1)
+            return "Pendiente de pago";
+        else
+            return "Pagado";
+    }
+
+    public String estadoVisita(Boolean estado){
+        if(!estado)
+            return "No facturado";
+        else
+            return "Facturado";
+    }
+
 
     @Scheduled(cron = "59 * * * * ?")
     public void comprobarEstados(){
         List<Factura> facturas = facturaRepository.findAll();
 
         for(Factura f : facturas){
-            List<Pago> pagos = buscarPagos(f.getId());
+            List<PagoDTO> pagos = buscarPagos(f.getId());
             Integer numeroPagados = 0;
-            for(Pago p : pagos){
-                if(p.getEstado() == 2)
+            for(PagoDTO p : pagos){
+                if(p.getEstado().equals("Pagado"))
                     numeroPagados++;
             }
 

@@ -22,12 +22,12 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.practica</groupId>
-			<artifactId>instancias</artifactId>
+			<artifactId>instancias-mongo</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>com.practica</groupId>
-			<artifactId>instancias-mongo</artifactId>
+			<artifactId>entidadesdto</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 
