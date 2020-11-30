@@ -7,7 +7,6 @@ import org.springframework.cloud.netflix.turbine.EnableTurbine;
 
 @SpringBootApplication
 @EnableHystrixDashboard
-@EnableTurbine
 public class HystrixApplication {
 
 	public static void main(String[] args) {
