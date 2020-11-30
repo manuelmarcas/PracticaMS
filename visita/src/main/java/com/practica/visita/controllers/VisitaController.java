@@ -43,8 +43,8 @@ public class VisitaController {
     }
 
     @PutMapping("/modificar")
-    public Visita modifyVisita(@RequestBody Visita visita){
-        return visitaService.save(visita);
+    public ResponseEntity<?> modifyVisita(@RequestBody Visita visita){
+        return visitaService.modify(visita);
     }
 
     @DeleteMapping("/eliminar")

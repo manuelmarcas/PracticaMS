@@ -63,8 +63,6 @@ public class VisitaServiceImpl implements IVisitaService {
         List<Visita> visitas = new ArrayList<>();
         Map<String, Object> response = new HashMap<>();
 
-
-
         if(estado == 0){
             visitas = visitaRepository.findByEstado(false);
             response.put("Mensaje", "Hay " + visitas.size() + " con el estado NO FACTURADA.");
@@ -82,6 +80,24 @@ public class VisitaServiceImpl implements IVisitaService {
 
     public Visita save(Visita visita){
         return visitaRepository.save(visita);
+    }
+
+    public ResponseEntity<?> modify(Visita visita){
+
+        Map<String, Object> response = new HashMap<>();
+        Optional<Visita> visitaAntigua = visitaRepository.findById(visita.getId());
+
+        if(!visitaAntigua.get().getEstado()){
+            visita.setEstado(false);
+            visita = visitaRepository.save(visita);
+            response.put("Mensaje", "Visita actualizada.");
+            response.put("Visitas", visita);
+            return new ResponseEntity<Map<String, Object>>(response, HttpStatus.OK);
+        }else{
+            response.put("Mensaje", "Solo se pueden actualizar las visitas no facturadas (estado = 0).");
+            return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
     }
 
     public void delete(Visita visita){

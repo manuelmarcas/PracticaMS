@@ -19,6 +19,8 @@ public interface IVisitaService {
 
     public Visita save(Visita visita);
 
+    public ResponseEntity<?> modify(Visita visita);
+
     public void delete(Visita visita);
 
     public void deleteById(int id);
