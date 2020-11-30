@@ -1,3 +1,7 @@
 spring:
   application:
     name: pago
+  cloud:
+    config:
+      uri: http://localhost:8083
+      label: main
