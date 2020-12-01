@@ -23,8 +23,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ceb28700-d4c4-49dc-a3ab-ec4a4f1e67c6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../hystrix/src/main/java/com/practica/hystrix/HystrixApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../hystrix/src/main/java/com/practica/hystrix/HystrixApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ficheros de configuracion/cliente.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ficheros de configuracion/factura.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ficheros de configuracion/pago.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Ficheros de configuracion/visita.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../admin/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../admin/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../gateway/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../gateway/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../hystrix/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../hystrix/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,22 +63,14 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../hystrix" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../admin" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Cosas de Manu\EVERIS\Talleres\PracticaMS\turbine" />
+    </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
-      <option name="arquillianRunConfiguration">
-        <value>
-          <option name="containerStateName" value="" />
-        </value>
-      </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="TurbineApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="turbine" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.practica.turbine.TurbineApplication" />
@@ -88,7 +88,9 @@
       <option name="presentableId" value="Default" />
       <updated>1606758853502</updated>
       <workItem from="1606758854634" duration="968000" />
-      <workItem from="1606851685939" duration="2393000" />
+      <workItem from="1606851685939" duration="3306000" />
+      <workItem from="1606861089173" duration="159000" />
+      <workItem from="1606861748072" duration="657000" />
     </task>
     <servers />
   </component>
@@ -108,41 +110,41 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1606856375231">
+    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1606861814604">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1606856375231" />
-    <state width="1877" height="440" key="GridCell.Tab.0.bottom" timestamp="1606854387298">
+    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1606861814604" />
+    <state width="914" height="436" key="GridCell.Tab.0.bottom" timestamp="1606861248445">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="440" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1606854387298" />
-    <state width="1877" height="440" key="GridCell.Tab.0.center" timestamp="1606854387298">
+    <state width="914" height="436" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1606861248445" />
+    <state width="914" height="436" key="GridCell.Tab.0.center" timestamp="1606861248445">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="440" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1606854387298" />
-    <state width="1877" height="440" key="GridCell.Tab.0.left" timestamp="1606854387298">
+    <state width="914" height="436" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1606861248445" />
+    <state width="914" height="436" key="GridCell.Tab.0.left" timestamp="1606861248445">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="440" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1606854387298" />
-    <state width="1877" height="440" key="GridCell.Tab.0.right" timestamp="1606854387298">
+    <state width="914" height="436" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1606861248445" />
+    <state width="914" height="436" key="GridCell.Tab.0.right" timestamp="1606861248445">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="440" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1606854387298" />
-    <state width="1877" height="440" key="GridCell.Tab.1.bottom" timestamp="1606854387299">
+    <state width="914" height="436" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1606861248445" />
+    <state width="1877" height="440" key="GridCell.Tab.1.bottom" timestamp="1606860204752">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="440" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1606854387299" />
-    <state width="1877" height="440" key="GridCell.Tab.1.center" timestamp="1606854387299">
+    <state width="1877" height="440" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1606860204752" />
+    <state width="1877" height="440" key="GridCell.Tab.1.center" timestamp="1606860204752">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="440" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1606854387299" />
-    <state width="1877" height="440" key="GridCell.Tab.1.left" timestamp="1606854387298">
+    <state width="1877" height="440" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1606860204752" />
+    <state width="1877" height="440" key="GridCell.Tab.1.left" timestamp="1606860204751">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="440" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1606854387298" />
-    <state width="1877" height="440" key="GridCell.Tab.1.right" timestamp="1606854387299">
+    <state width="1877" height="440" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1606860204751" />
+    <state width="1877" height="440" key="GridCell.Tab.1.right" timestamp="1606860204752">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="440" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1606854387299" />
+    <state width="1877" height="440" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1606860204752" />
   </component>
 </project>
