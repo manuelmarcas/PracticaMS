@@ -20,7 +20,6 @@
 	</properties>
 
 	<dependencies>
-
 		<dependency>
 			<groupId>com.practica</groupId>
 			<artifactId>instancias-mongo</artifactId>
@@ -45,6 +44,10 @@
 			<artifactId>spring-boot-starter-data-mongodb-reactive</artifactId>
 		</dependency>
 		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-config</artifactId>
 		</dependency>
@@ -54,7 +57,7 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-netflix-hystrix-dashboard</artifactId>
+			<artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
 		</dependency>
 
 		<dependency>
