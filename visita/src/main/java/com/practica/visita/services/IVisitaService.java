@@ -1,5 +1,6 @@
 package com.practica.visita.services;
 
+import com.practica.entidadesdto.domain.VisitaDTO;
 import com.practica.instancias.domain.Direccion;
 import com.practica.instancias.domain.Visita;
 import org.springframework.http.ResponseEntity;
@@ -11,13 +12,13 @@ public interface IVisitaService {
 
     public List<Visita> getVisitas();
 
-    public Visita getVisitaId(int id);
+    public VisitaDTO getVisitaId(int id);
 
     public ResponseEntity<?> getVisitaByIdCliente(int idCliente);
 
     public ResponseEntity<?> getVisitaByEstado(Integer estado);
 
-    public Visita save(Visita visita);
+    public VisitaDTO save(VisitaDTO visita);
 
     public ResponseEntity<?> modify(Visita visita);
 

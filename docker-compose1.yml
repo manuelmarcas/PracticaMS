@@ -1,0 +1,27 @@
+version: "2"
+
+services:
+
+  cliente:
+    image: cliente
+    container_name: cliente-service
+    ports:
+      - "8080"
+
+  visita:
+    image: visita
+    container_name: visita-service
+    ports:
+      - "8081"
+
+  factura:
+    image: factura
+    container_name: factura-service
+    ports:
+      - "8082"
+
+  pago:
+    image: pago
+    container_name: pago-service
+    ports:
+      - "8084"

@@ -1,11 +1,9 @@
-package com.practica.instancias.DTOs;
-
-import com.practica.instancias.domain.Visita;
-import com.practica.instancias_mongo.domain.Pago;
+package com.practica.entidadesdto.domain;
 
 import java.util.List;
 
 public class FacturaDTO {
+
 
     private String id;
 
@@ -17,12 +15,14 @@ public class FacturaDTO {
 
     private String estado;
 
-    private List<Pago> pagos;
+    private List<PagoDTO> pagos;
 
-    private Visita visita;
+    private VisitaDTO visita;
 
 
-    public FacturaDTO(String id, String nombreCliente, float importe, String formaPago, String estado, List<Pago> pagos, Visita visita) {
+    public FacturaDTO(){}
+
+    public FacturaDTO(String id, String nombreCliente, float importe, String formaPago, String estado, List<PagoDTO> pagos, VisitaDTO visita) {
         this.id = id;
         this.nombreCliente = nombreCliente;
         this.importe = importe;
@@ -31,6 +31,7 @@ public class FacturaDTO {
         this.pagos = pagos;
         this.visita = visita;
     }
+
 
     public String getId() {
         return id;
@@ -72,19 +73,19 @@ public class FacturaDTO {
         this.estado = estado;
     }
 
-    public List<Pago> getPagos() {
+    public List<PagoDTO> getPagos() {
         return pagos;
     }
 
-    public void setPagos(List<Pago> pagos) {
+    public void setPagos(List<PagoDTO> pagos) {
         this.pagos = pagos;
     }
 
-    public Visita getVisita() {
+    public VisitaDTO getVisita() {
         return visita;
     }
 
-    public void setVisita(Visita visita) {
+    public void setVisita(VisitaDTO visita) {
         this.visita = visita;
     }
 }

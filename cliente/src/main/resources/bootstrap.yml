@@ -3,5 +3,5 @@ spring:
     name: cliente
   cloud:
     config:
-      uri: http://localhost:8093
+      uri: http://172.28.144.1:8888
       label: main
