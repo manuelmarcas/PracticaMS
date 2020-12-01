@@ -4,10 +4,13 @@ import com.netflix.appinfo.InstanceInfo;
 import com.netflix.discovery.EurekaClient;
 import com.netflix.discovery.shared.Application;
 import com.practica.entidadesdto.domain.ClienteDTO;
-import com.practica.entidadesdto.domain.PagoDTO;
 import com.practica.entidadesdto.domain.FacturaDTO;
+import com.practica.entidadesdto.domain.PagoDTO;
 import com.practica.entidadesdto.domain.VisitaDTO;
 import com.practica.factura.repositories.FacturaRepository;
+//import com.practica.instancias.DTOs.FacturaDTO;
+//import com.practica.instancias.domain.Cliente;
+//import com.practica.instancias.domain.Visita;
 import com.practica.instancias_mongo.domain.Factura;
 import com.practica.instancias_mongo.domain.Pago;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,7 +70,6 @@ public class FacturaServiceImp implements IFacturaService {
             response.put("Mensaje", "El cliente no tiene facturas.");
             return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
         }
-
     }
 
     public ResponseEntity<?> getFacturaEstado(Integer estado){
@@ -96,7 +98,6 @@ public class FacturaServiceImp implements IFacturaService {
             response.put("Mensaje", "No hay facturas con ese estado");
             return new ResponseEntity<Map<String, Object>>(response, HttpStatus.NOT_FOUND);
         }
-
     }
 
     public ResponseEntity<?> findByImporte(Float importe){
@@ -145,9 +146,7 @@ public class FacturaServiceImp implements IFacturaService {
         }
 
         ClienteDTO c = buscarCliente(factura.getIdCliente());
-        System.out.println("SI EJECUTA EL metodo");
         if(c != null){
-            System.out.println("SI ENTRA DENTRO DEL IF");
 
             //SE CREA LA VISITA Y SE GUARDA
             System.out.println("1: " + factura.getImporte());
@@ -227,7 +226,6 @@ public class FacturaServiceImp implements IFacturaService {
             response.put("Mensaje", "No existe ningún usuario con ese id.");
             return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-
     }
 
     public void delete(Factura factura){
@@ -235,7 +233,6 @@ public class FacturaServiceImp implements IFacturaService {
     }
 
     public void deleteById(String id){
-        System.out.println(id);
         Optional<Factura> f = facturaRepository.findById(id);
 
         if(f!=null){
@@ -350,7 +347,7 @@ public class FacturaServiceImp implements IFacturaService {
 
             String estado = estadoPago(responsePago.getBody().getEstado());
             pagosCreados.add(new PagoDTO(responsePago.getBody().getId(), responsePago.getBody().getPago(),
-                   estado, responsePago.getBody().getIdFactura()));
+                    estado, responsePago.getBody().getIdFactura()));
         }
 
         return pagosCreados;
@@ -375,6 +372,8 @@ public class FacturaServiceImp implements IFacturaService {
             restTemplate.delete(fooResourceUrl + "api/pago/eliminar/" + responsePago.getBody()[i].getId());
 
     }
+
+
 
 
     //METODOS DE ESTADOS

@@ -23,10 +23,12 @@ public class Security {
     @Bean
     public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
 
-        ServerHttpSecurity.AuthorizeExchangeSpec authorizeExchangeSpec = http.authorizeExchange().pathMatchers("/actuator/**").hasRole("ADMIN");
+        ServerHttpSecurity.AuthorizeExchangeSpec authorizeExchangeSpec = http.authorizeExchange();
 
+        authorizeExchangeSpec.pathMatchers("/crear/**").permitAll();
+        authorizeExchangeSpec.pathMatchers("/actuator").hasRole("USER");
         authorizeExchangeSpec.pathMatchers("/**").authenticated();
-        authorizeExchangeSpec.pathMatchers("/pago/**").hasRole("pagos");
+        authorizeExchangeSpec.and().csrf().disable().httpBasic();
         return http.build();
 
     }

@@ -12,6 +12,8 @@ public class ClienteDTO {
     private DireccionDTO direccion;
 
 
+    public ClienteDTO(){}
+
     public ClienteDTO(Integer id, String nombre, int estado, DireccionDTO direccion) {
         this.id = id;
         this.nombre = nombre;

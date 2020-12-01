@@ -20,6 +20,8 @@ public class FacturaDTO {
     private VisitaDTO visita;
 
 
+    public FacturaDTO(){}
+
     public FacturaDTO(String id, String nombreCliente, float importe, String formaPago, String estado, List<PagoDTO> pagos, VisitaDTO visita) {
         this.id = id;
         this.nombreCliente = nombreCliente;

@@ -13,6 +13,8 @@ public class PagoDTO {
     private String idFactura;
 
 
+    public PagoDTO(){}
+
     public PagoDTO(String id, float pago, String estado, String idFactura) {
         this.id = id;
         this.pago = pago;

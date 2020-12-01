@@ -3,6 +3,7 @@ package com.practica.gateway.domain;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
@@ -16,12 +17,8 @@ public class User implements UserDetails {
     private String username;
     private String password;
     private String domain;
-    private boolean active;
-    private boolean expired;
-    private boolean lock;
-    private boolean credentialExpire;
-    private boolean enable;
-    private Set<GrantedAuthority> roles = new HashSet<>();
+    private boolean active = true;
+    private Set<SimpleGrantedAuthority> roles;
 
 
     public String getId() {
@@ -56,43 +53,11 @@ public class User implements UserDetails {
         this.active = active;
     }
 
-    public boolean isExpired() {
-        return expired;
-    }
-
-    public void setExpired(boolean expired) {
-        this.expired = expired;
-    }
-
-    public boolean isLock() {
-        return lock;
-    }
-
-    public void setLock(boolean lock) {
-        this.lock = lock;
-    }
-
-    public boolean isCredentialExpire() {
-        return credentialExpire;
-    }
-
-    public void setCredentialExpire(boolean credentialExpire) {
-        this.credentialExpire = credentialExpire;
-    }
-
-    public boolean isEnable() {
-        return enable;
-    }
-
-    public void setEnable(boolean enable) {
-        this.enable = enable;
-    }
-
-    public Set<GrantedAuthority> getRoles() {
+    public Set<SimpleGrantedAuthority> getRoles() {
         return roles;
     }
 
-    public void setRoles(Set<GrantedAuthority> roles) {
+    public void setRoles(Set<SimpleGrantedAuthority> roles) {
         this.roles = roles;
     }
 
@@ -115,21 +80,21 @@ public class User implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return this.expired;
+        return active;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return this.lock;
+        return active;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return this.credentialExpire;
+        return active;
     }
 
     @Override
     public boolean isEnabled() {
-        return this.enable;
+        return active;
     }
 }

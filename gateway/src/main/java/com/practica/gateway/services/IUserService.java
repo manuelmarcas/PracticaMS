@@ -5,6 +5,6 @@ import reactor.core.publisher.Mono;
 
 public interface IUserService {
 
-    public Mono<User> save(User user);
+    public User save(String username, String pass, String rol);
 
 }

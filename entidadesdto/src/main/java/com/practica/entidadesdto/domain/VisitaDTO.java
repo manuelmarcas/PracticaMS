@@ -16,8 +16,7 @@ public class VisitaDTO {
 
 
 
-    public VisitaDTO() {
-    }
+    public VisitaDTO() {}
 
     public VisitaDTO(int id, Date fecha, Float importe, int idCliente, boolean estado) {
         this.id = id;

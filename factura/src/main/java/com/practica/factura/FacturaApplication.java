@@ -1,4 +1,4 @@
-package com.practica;
+package com.practica.factura;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

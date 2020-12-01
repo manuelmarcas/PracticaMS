@@ -13,6 +13,8 @@ public class DireccionDTO {
     private int idCliente;
 
 
+    public DireccionDTO(){}
+
     public DireccionDTO(Integer id, String ciudad, String calle, int numero, int idCliente) {
         this.id = id;
         this.ciudad = ciudad;

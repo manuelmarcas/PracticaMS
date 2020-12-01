@@ -23,8 +23,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="34507604-db3f-4e61-9d64-b47c51b7d634" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../cliente/src/main/resources/bootstrap.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../cliente/src/main/resources/bootstrap.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../factura/src/main/java/com/practica/factura/FacturaApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../gateway/src/main/java/com/practica/gateway/domain/Rol.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../config/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../config/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/practica/entidadesdto/domain/ClienteDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/practica/entidadesdto/domain/ClienteDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/practica/entidadesdto/domain/DireccionDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/practica/entidadesdto/domain/DireccionDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/practica/entidadesdto/domain/FacturaDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/practica/entidadesdto/domain/FacturaDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/practica/entidadesdto/domain/PagoDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/practica/entidadesdto/domain/PagoDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/practica/entidadesdto/domain/VisitaDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/practica/entidadesdto/domain/VisitaDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../factura/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../factura/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../factura/.mvn/wrapper/MavenWrapperDownloader.java" beforeDir="false" afterPath="$PROJECT_DIR$/../factura/.mvn/wrapper/MavenWrapperDownloader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../factura/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../factura/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../factura/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../factura/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/../factura/mvnw" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../factura/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/../factura/mvnw.cmd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../factura/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../factura/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../factura/src/main/java/com/practica/FacturaApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../factura/src/main/java/com/practica/factura/services/FacturaServiceImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/../factura/src/main/java/com/practica/factura/services/FacturaServiceImp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../factura/src/test/java/com/practica/factura/FacturaApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/../factura/src/test/java/com/practica/factura/FacturaApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../gateway/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../gateway/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../gateway/src/main/java/com/practica/gateway/Security.java" beforeDir="false" afterPath="$PROJECT_DIR$/../gateway/src/main/java/com/practica/gateway/Security.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../gateway/src/main/java/com/practica/gateway/controllers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../gateway/src/main/java/com/practica/gateway/controllers/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../gateway/src/main/java/com/practica/gateway/domain/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/../gateway/src/main/java/com/practica/gateway/domain/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../gateway/src/main/java/com/practica/gateway/services/IUserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../gateway/src/main/java/com/practica/gateway/services/IUserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../gateway/src/main/java/com/practica/gateway/services/UserServiceImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/../gateway/src/main/java/com/practica/gateway/services/UserServiceImp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../gateway/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../gateway/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,15 +85,13 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunManager">
-    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
       <option name="arquillianRunConfiguration">
         <value>
           <option name="containerStateName" value="" />
         </value>
       </option>
-      <option name="TEST_OBJECT" value="CLASS" />
-      <properties />
-      <listeners />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -92,6 +114,8 @@
       <updated>1606760311372</updated>
       <workItem from="1606760314543" duration="1608000" />
       <workItem from="1606777885080" duration="3310000" />
+      <workItem from="1606805915790" duration="1194000" />
+      <workItem from="1606840389846" duration="2913000" />
     </task>
     <servers />
   </component>
@@ -119,21 +143,25 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="1245" y="207" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1606780959495" />
-    <state width="914" height="278" key="GridCell.Tab.0.bottom" timestamp="1606780964103">
+    <state x="1015" y="122" key="FileChooserDialogImpl" timestamp="1606840910769">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="914" height="278" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1606780964103" />
-    <state width="914" height="278" key="GridCell.Tab.0.center" timestamp="1606780964102">
+    <state x="1015" y="122" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1606840910769" />
+    <state width="914" height="278" key="GridCell.Tab.0.bottom" timestamp="1606846576035">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="914" height="278" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1606780964102" />
-    <state width="914" height="278" key="GridCell.Tab.0.left" timestamp="1606780964101">
+    <state width="914" height="278" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1606846576035" />
+    <state width="914" height="278" key="GridCell.Tab.0.center" timestamp="1606846576035">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="914" height="278" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1606780964101" />
-    <state width="914" height="278" key="GridCell.Tab.0.right" timestamp="1606780964102">
+    <state width="914" height="278" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1606846576035" />
+    <state width="914" height="278" key="GridCell.Tab.0.left" timestamp="1606846576035">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="914" height="278" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1606780964102" />
+    <state width="914" height="278" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1606846576035" />
+    <state width="914" height="278" key="GridCell.Tab.0.right" timestamp="1606846576035">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="914" height="278" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1606846576035" />
   </component>
 </project>
