@@ -23,20 +23,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="34507604-db3f-4e61-9d64-b47c51b7d634" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/practica/entidadesdto/domain/ClienteDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/practica/entidadesdto/domain/DireccionDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../cliente/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../cliente/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../cliente/src/main/java/com/practica/cliente/controllers/ClienteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../cliente/src/main/java/com/practica/cliente/controllers/ClienteController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../cliente/src/main/java/com/practica/cliente/services/ClienteService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../cliente/src/main/java/com/practica/cliente/services/ClienteService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cliente/src/main/resources/bootstrap.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../cliente/src/main/resources/bootstrap.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/practica/entidadesdto/domain/VisitaDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/practica/entidadesdto/domain/VisitaDTO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../factura/src/main/java/com/practica/factura/services/FacturaServiceImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/../factura/src/main/java/com/practica/factura/services/FacturaServiceImp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../modelo/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../modelo/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../modelo/src/main/java/com/practica/instancias/DTOs/FacturaDTO.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../visita/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../visita/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../visita/src/main/java/com/practica/visita/controllers/VisitaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../visita/src/main/java/com/practica/visita/controllers/VisitaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../visita/src/main/java/com/practica/visita/services/IVisitaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../visita/src/main/java/com/practica/visita/services/IVisitaService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../visita/src/main/java/com/practica/visita/services/VisitaServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../visita/src/main/java/com/practica/visita/services/VisitaServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,7 +91,7 @@
       <option name="presentableId" value="Default" />
       <updated>1606760311372</updated>
       <workItem from="1606760314543" duration="1608000" />
-      <workItem from="1606777885080" duration="3067000" />
+      <workItem from="1606777885080" duration="3310000" />
     </task>
     <servers />
   </component>

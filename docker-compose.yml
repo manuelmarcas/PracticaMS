@@ -1,0 +1,35 @@
+version: "2"
+
+services:
+
+  eureka:
+    image: eureka
+    container_name: eureka-server1
+    ports:
+      - "8761:8761"
+
+  config:
+    image: config
+    container_name: config-server1
+    ports:
+      - "8888:8888"
+
+
+  mysql:
+    image: mysql
+    container_name: mysql1
+    environment:
+      - MYSQL_USER=root
+      - MYSQL_ROOT_PASSWORD=1A60mhJs
+    ports:
+      - "3307:3306"
+    volumes:
+      - C:\var\lib
+
+  db:
+    image: mongo
+    container_name: mongo1
+    ports:
+      - "27017:27017"
+    volumes:
+      - C:\data\db
