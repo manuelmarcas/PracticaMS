@@ -3,12 +3,11 @@ package com.practica.factura.services;
 import com.netflix.appinfo.InstanceInfo;
 import com.netflix.discovery.EurekaClient;
 import com.netflix.discovery.shared.Application;
+import com.practica.entidadesdto.domain.ClienteDTO;
 import com.practica.entidadesdto.domain.PagoDTO;
 import com.practica.entidadesdto.domain.FacturaDTO;
 import com.practica.entidadesdto.domain.VisitaDTO;
 import com.practica.factura.repositories.FacturaRepository;
-import com.practica.instancias.domain.Cliente;
-import com.practica.instancias.domain.Visita;
 import com.practica.instancias_mongo.domain.Factura;
 import com.practica.instancias_mongo.domain.Pago;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,7 +48,7 @@ public class FacturaServiceImp implements IFacturaService {
         Map<String, Object> response = new HashMap<>();
         if(facturas.size() != 0){
             for(Factura f : facturas){
-                Cliente cliente = buscarCliente(idCliente);
+                ClienteDTO cliente = buscarCliente(idCliente);
                 VisitaDTO visita = buscarVisita(f.getLineaFactura());
                 List<PagoDTO> pagos = buscarPagos(f.getId());
 
@@ -79,7 +78,7 @@ public class FacturaServiceImp implements IFacturaService {
         if(facturas.size() != 0){
             String formaPago = formaDePago(facturas.get(0).getFormaPago());
             for(Factura f : facturas){
-                Cliente cliente = buscarCliente(f.getIdCliente());
+                ClienteDTO cliente = buscarCliente(f.getIdCliente());
                 VisitaDTO visita = buscarVisita(f.getLineaFactura());
                 List<PagoDTO> pagos = buscarPagos(f.getId());
 
@@ -108,7 +107,7 @@ public class FacturaServiceImp implements IFacturaService {
         if(facturas.size() != 0){
             String formaPago = formaDePago(facturas.get(0).getFormaPago());
             for(Factura f : facturas){
-                Cliente cliente = buscarCliente(f.getIdCliente());
+                ClienteDTO cliente = buscarCliente(f.getIdCliente());
                 VisitaDTO visita = buscarVisita(f.getLineaFactura());
                 List<PagoDTO> pagos = buscarPagos(f.getId());
 
@@ -145,7 +144,7 @@ public class FacturaServiceImp implements IFacturaService {
             return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
-        Cliente c = buscarCliente(factura.getIdCliente());
+        ClienteDTO c = buscarCliente(factura.getIdCliente());
         System.out.println("SI EJECUTA EL metodo");
         if(c != null){
             System.out.println("SI ENTRA DENTRO DEL IF");
@@ -197,7 +196,7 @@ public class FacturaServiceImp implements IFacturaService {
             return new ResponseEntity<Map<String, Object>>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
 
-        Cliente c = buscarCliente(factura.getIdCliente());
+        ClienteDTO c = buscarCliente(factura.getIdCliente());
 
         if(c != null){
 
@@ -253,7 +252,7 @@ public class FacturaServiceImp implements IFacturaService {
 
 
     //METODOS DE LLAMADAS A OTROS MICROSERVICIOS
-    public Cliente buscarCliente(Integer idCliente){
+    public ClienteDTO buscarCliente(Integer idCliente){
 
         Application applicationCliente = eurekaClient.getApplication("cliente");
         List<InstanceInfo> instanceInfosCliente = applicationCliente.getInstances();
@@ -261,11 +260,10 @@ public class FacturaServiceImp implements IFacturaService {
         String fooResourceUrl = instanceInfosCliente.get(0).getHomePageUrl();
 
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<Cliente> responseCliente
-                = restTemplate.getForEntity(fooResourceUrl + "api/cliente/" + idCliente, Cliente.class);
-        Cliente c = responseCliente.getBody();
+        ResponseEntity<ClienteDTO> responseCliente
+                = restTemplate.getForEntity(fooResourceUrl + "api/cliente/" + idCliente, ClienteDTO.class);
 
-        return c;
+        return responseCliente.getBody();
     }
 
     public VisitaDTO buscarVisita(Integer idVisita){
@@ -273,17 +271,13 @@ public class FacturaServiceImp implements IFacturaService {
         Application applicationVisita = eurekaClient.getApplication("visita");
         List<InstanceInfo> instanceInfosVisita = applicationVisita.getInstances();
 
-        Visita v = new Visita();
-
         RestTemplate restTemplate = new RestTemplate();
 
         String fooResourceUrl = instanceInfosVisita.get(0).getHomePageUrl();
-        ResponseEntity<Visita> responseVisita
-                = restTemplate.getForEntity(fooResourceUrl + "api/visita/" + idVisita, Visita.class);
+        ResponseEntity<VisitaDTO> responseVisita
+                = restTemplate.getForEntity(fooResourceUrl + "api/visita/" + idVisita, VisitaDTO.class);
 
-        v = responseVisita.getBody();
-        String estadoVisita = estadoVisita(v.getEstado());
-        return new VisitaDTO(v.getId(), v.getFecha(), v.getImporte(), v.getIdCliente(), estadoVisita);
+        return responseVisita.getBody();
 
     }
 
@@ -317,24 +311,20 @@ public class FacturaServiceImp implements IFacturaService {
         Application applicationVisita = eurekaClient.getApplication("visita");
         List<InstanceInfo> instanceInfosVisita = applicationVisita.getInstances();
 
-        Visita v = new Visita();
+        VisitaDTO v = new VisitaDTO();
         v.setFecha(new Date());
         v.setImporte(importe);
         v.setIdCliente(idCliente);
         v.setEstado(true);
 
-        System.out.println("2: " + v.getImporte());
-        System.out.println("2: " + v.getIdCliente());
-
         RestTemplate restTemplate = new RestTemplate();
 
         String fooResourceUrl = instanceInfosVisita.get(0).getHomePageUrl();
-        ResponseEntity<Visita> responseVisita
-                = restTemplate.postForEntity(fooResourceUrl + "api/visita/guardar", v, Visita.class);
+        ResponseEntity<VisitaDTO> responseVisita
+                = restTemplate.postForEntity(fooResourceUrl + "api/visita/guardar", v, VisitaDTO.class);
 
         v = responseVisita.getBody();
-        String estadoVisita = estadoVisita(v.getEstado());
-        return new VisitaDTO(v.getId(), v.getFecha(), v.getImporte(), v.getIdCliente(), estadoVisita);
+        return new VisitaDTO(v.getId(), v.getFecha(), v.getImporte(), v.getIdCliente(), v.getEstado());
 
     }
 
@@ -360,7 +350,7 @@ public class FacturaServiceImp implements IFacturaService {
 
             String estado = estadoPago(responsePago.getBody().getEstado());
             pagosCreados.add(new PagoDTO(responsePago.getBody().getId(), responsePago.getBody().getPago(),
-                   estado , responsePago.getBody().getIdFactura());
+                   estado, responsePago.getBody().getIdFactura()));
         }
 
         return pagosCreados;
@@ -417,12 +407,6 @@ public class FacturaServiceImp implements IFacturaService {
             return "Pagado";
     }
 
-    public String estadoVisita(Boolean estado){
-        if(!estado)
-            return "No facturado";
-        else
-            return "Facturado";
-    }
 
 
     @Scheduled(cron = "59 * * * * ?")

@@ -6,6 +6,8 @@ import com.netflix.discovery.EurekaClient;
 import com.netflix.discovery.shared.Application;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.practica.cliente.repositories.ClienteRepository;
+import com.practica.entidadesdto.domain.ClienteDTO;
+import com.practica.entidadesdto.domain.DireccionDTO;
 import com.practica.instancias.domain.Cliente;
 import com.practica.instancias.domain.Direccion;
 import org.apache.logging.log4j.spi.ObjectThreadContextMap;
@@ -38,8 +40,14 @@ public class ClienteService {
         return clienteRepository.findAll();
     }
 
-    public Cliente getClienteId(int id){
-        return clienteRepository.findById(id);
+    public ClienteDTO getClienteId(int id){
+        Cliente c = clienteRepository.findById(id);
+        Direccion d = c.getDireccion();
+        DireccionDTO dirDTO = new DireccionDTO(d.getId(), d.getCiudad(), d.getCalle(),
+                d.getNumero(), d.getIdCliente());
+        ClienteDTO clienteDTO = new ClienteDTO(c.getId(), c.getNombre(), c.getEstado(), dirDTO);
+
+        return clienteDTO;
     }
 
     public Cliente save(Cliente cliente){

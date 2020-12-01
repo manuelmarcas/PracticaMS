@@ -3,6 +3,7 @@ package com.practica.visita.services;
 import com.netflix.appinfo.InstanceInfo;
 import com.netflix.discovery.EurekaClient;
 import com.netflix.discovery.shared.Application;
+import com.practica.entidadesdto.domain.VisitaDTO;
 import com.practica.instancias.domain.Cliente;
 import com.practica.instancias.domain.Visita;
 import com.practica.instancias.domain.Direccion;
@@ -32,8 +33,9 @@ public class VisitaServiceImpl implements IVisitaService {
         return visitaRepository.findAll();
     }
 
-    public Visita getVisitaId(int id){
-        return visitaRepository.findById(id);
+    public VisitaDTO getVisitaId(int id){
+        Visita v = visitaRepository.findById(id);
+        return new VisitaDTO(v.getId(), v.getFecha(), v.getImporte(), v.getIdCliente(), v.getEstado());
     }
 
     public ResponseEntity<?> getVisitaByIdCliente(int idCliente){
@@ -77,9 +79,16 @@ public class VisitaServiceImpl implements IVisitaService {
 
     }
 
+    public VisitaDTO save(VisitaDTO visita){
+        Visita v = new Visita();
+        v.setFecha(visita.getFecha());
+        v.setImporte(visita.getImporte());
+        v.setIdCliente(visita.getIdCliente());
+        v.setEstado(visita.getEstado());
+        v = visitaRepository.save(v);
 
-    public Visita save(Visita visita){
-        return visitaRepository.save(visita);
+        visita.setId(v.getId());
+        return visita;
     }
 
     public ResponseEntity<?> modify(Visita visita){
@@ -134,5 +143,6 @@ public class VisitaServiceImpl implements IVisitaService {
 
         return c;
     }
-    
+
+
 }

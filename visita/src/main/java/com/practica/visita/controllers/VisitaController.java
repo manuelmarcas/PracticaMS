@@ -1,5 +1,6 @@
 package com.practica.visita.controllers;
 
+import com.practica.entidadesdto.domain.VisitaDTO;
 import com.practica.instancias.domain.Visita;
 import com.practica.visita.services.IVisitaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,7 @@ public class VisitaController {
 
     //Optional es por si no existe
     @GetMapping("/{id}")
-    public Visita getVisita(@PathVariable("id") int id){
+    public VisitaDTO getVisita(@PathVariable("id") int id){
         return visitaService.getVisitaId(id);
     }
 
@@ -38,7 +39,7 @@ public class VisitaController {
     }
 
     @PostMapping("/guardar")
-    public Visita saveVisita(@RequestBody Visita visita){
+    public VisitaDTO saveVisita(@RequestBody VisitaDTO visita){
         return visitaService.save(visita);
     }
 

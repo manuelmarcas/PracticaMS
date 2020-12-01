@@ -23,22 +23,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="34507604-db3f-4e61-9d64-b47c51b7d634" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/MavenWrapperDownloader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mvnw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mvnw.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/practica/entidadesdto/EntidadesdtoApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/practica/entidadesdto/domain/FacturaDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/practica/entidadesdto/domain/PagoDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/practica/entidadesdto/domain/VisitaDTO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/practica/entidadesdto/EntidadesdtoApplicationTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/practica/entidadesdto/domain/ClienteDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/practica/entidadesdto/domain/DireccionDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cliente/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../cliente/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cliente/src/main/java/com/practica/cliente/controllers/ClienteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../cliente/src/main/java/com/practica/cliente/controllers/ClienteController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../cliente/src/main/java/com/practica/cliente/services/ClienteService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../cliente/src/main/java/com/practica/cliente/services/ClienteService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../factura/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../factura/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/practica/entidadesdto/domain/VisitaDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/practica/entidadesdto/domain/VisitaDTO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../factura/src/main/java/com/practica/factura/services/FacturaServiceImp.java" beforeDir="false" afterPath="$PROJECT_DIR$/../factura/src/main/java/com/practica/factura/services/FacturaServiceImp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../modelo/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../modelo/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../modelo/src/main/java/com/practica/instancias/DTOs/FacturaDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../visita/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../visita/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../visita/src/main/java/com/practica/visita/controllers/VisitaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../visita/src/main/java/com/practica/visita/controllers/VisitaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../visita/src/main/java/com/practica/visita/services/IVisitaService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../visita/src/main/java/com/practica/visita/services/IVisitaService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../visita/src/main/java/com/practica/visita/services/VisitaServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../visita/src/main/java/com/practica/visita/services/VisitaServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,6 +73,19 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunManager">
+    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+      <option name="arquillianRunConfiguration">
+        <value>
+          <option name="containerStateName" value="" />
+        </value>
+      </option>
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="EntidadesdtoApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="entidadesdto" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.practica.entidadesdto.EntidadesdtoApplication" />
@@ -92,7 +103,7 @@
       <option name="presentableId" value="Default" />
       <updated>1606760311372</updated>
       <workItem from="1606760314543" duration="1608000" />
-      <workItem from="1606777885080" duration="1441000" />
+      <workItem from="1606777885080" duration="3067000" />
     </task>
     <servers />
   </component>
@@ -116,25 +127,25 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="1204" y="325" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1606760352067" />
-    <state x="1245" y="207" key="#com.intellij.ide.util.MemberChooser" timestamp="1606778799615">
+    <state x="1245" y="207" key="#com.intellij.ide.util.MemberChooser" timestamp="1606780959495">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="1245" y="207" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1606778799615" />
-    <state width="914" height="278" key="GridCell.Tab.0.bottom" timestamp="1606778921472">
+    <state x="1245" y="207" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040@0.0.1920.1040" timestamp="1606780959495" />
+    <state width="914" height="278" key="GridCell.Tab.0.bottom" timestamp="1606780964103">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="914" height="278" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1606778921472" />
-    <state width="914" height="278" key="GridCell.Tab.0.center" timestamp="1606778921472">
+    <state width="914" height="278" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1606780964103" />
+    <state width="914" height="278" key="GridCell.Tab.0.center" timestamp="1606780964102">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="914" height="278" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1606778921472" />
-    <state width="914" height="278" key="GridCell.Tab.0.left" timestamp="1606778921472">
+    <state width="914" height="278" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1606780964102" />
+    <state width="914" height="278" key="GridCell.Tab.0.left" timestamp="1606780964101">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="914" height="278" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1606778921472" />
-    <state width="914" height="278" key="GridCell.Tab.0.right" timestamp="1606778921472">
+    <state width="914" height="278" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1606780964101" />
+    <state width="914" height="278" key="GridCell.Tab.0.right" timestamp="1606780964102">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="914" height="278" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1606778921472" />
+    <state width="914" height="278" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1606780964102" />
   </component>
 </project>

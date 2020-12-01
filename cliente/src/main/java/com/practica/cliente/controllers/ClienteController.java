@@ -1,6 +1,8 @@
 package com.practica.cliente.controllers;
 
 import com.practica.cliente.services.ClienteService;
+import com.practica.entidadesdto.domain.ClienteDTO;
+import com.practica.entidadesdto.domain.DireccionDTO;
 import com.practica.instancias.domain.Cliente;
 import com.practica.instancias.domain.Direccion;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +27,7 @@ public class ClienteController {
 
     //Optional es por si no existe
     @GetMapping("/{id}")
-    public Cliente getCliente(@PathVariable("id") int id){
+    public ClienteDTO getCliente(@PathVariable("id") int id){
         return clienteService.getClienteId(id);
     }
 

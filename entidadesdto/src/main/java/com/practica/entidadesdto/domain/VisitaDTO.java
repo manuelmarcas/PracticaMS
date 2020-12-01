@@ -12,10 +12,14 @@ public class VisitaDTO {
 
     private int idCliente;
 
-    private String estado;
+    private boolean estado;
 
 
-    public VisitaDTO(int id, Date fecha, Float importe, int idCliente, String estado) {
+
+    public VisitaDTO() {
+    }
+
+    public VisitaDTO(int id, Date fecha, Float importe, int idCliente, boolean estado) {
         this.id = id;
         this.fecha = fecha;
         this.importe = importe;
@@ -56,11 +60,11 @@ public class VisitaDTO {
         this.idCliente = idCliente;
     }
 
-    public String getEstado() {
+    public boolean getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(boolean estado) {
         this.estado = estado;
     }
 }
