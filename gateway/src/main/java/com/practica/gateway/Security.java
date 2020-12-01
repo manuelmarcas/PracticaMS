@@ -26,7 +26,10 @@ public class Security {
         ServerHttpSecurity.AuthorizeExchangeSpec authorizeExchangeSpec = http.authorizeExchange();
 
         authorizeExchangeSpec.pathMatchers("/crear/**").permitAll();
-        authorizeExchangeSpec.pathMatchers("/actuator").hasRole("USER");
+        authorizeExchangeSpec.pathMatchers("/cliente/**").hasRole("CLIENTE");
+        authorizeExchangeSpec.pathMatchers("/factura/**").hasRole("FACTURA");
+        authorizeExchangeSpec.pathMatchers("/visita/**").hasRole("VISITA");
+        authorizeExchangeSpec.pathMatchers("/pago/**").hasRole("PAGO");
         authorizeExchangeSpec.pathMatchers("/**").authenticated();
         authorizeExchangeSpec.and().csrf().disable().httpBasic();
         return http.build();
