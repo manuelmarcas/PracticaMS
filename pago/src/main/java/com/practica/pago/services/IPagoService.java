@@ -1,6 +1,5 @@
 package com.practica.pago.services;
 
-import com.practica.instancias_mongo.domain.Factura;
 import com.practica.instancias_mongo.domain.Pago;
 
 import java.util.List;
