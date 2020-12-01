@@ -23,9 +23,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ceb28700-d4c4-49dc-a3ab-ec4a4f1e67c6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hystrix/src/main/java/com/practica/hystrix/HystrixApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../hystrix/src/main/java/com/practica/hystrix/HystrixApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../hystrix/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../hystrix/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,7 +55,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../hystrix" />
   </component>
   <component name="RunManager">
     <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
@@ -89,7 +88,7 @@
       <option name="presentableId" value="Default" />
       <updated>1606758853502</updated>
       <workItem from="1606758854634" duration="968000" />
-      <workItem from="1606851685939" duration="1963000" />
+      <workItem from="1606851685939" duration="2393000" />
     </task>
     <servers />
   </component>
@@ -109,6 +108,10 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1606856375231">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1606856375231" />
     <state width="1877" height="440" key="GridCell.Tab.0.bottom" timestamp="1606854387298">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
