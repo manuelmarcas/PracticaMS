@@ -1,0 +1,17 @@
+[{
+  "_id": {
+    "$oid": "5fc6cb0b3ff97d10162b28fe"
+  },
+  "pago": 1000,
+  "estado": 2,
+  "idFactura": "5fc6cb0b08344341c9da95ac",
+  "_class": "com.practica.instancias_mongo.domain.Pago"
+},{
+  "_id": {
+    "$oid": "5fc6cb0c3ff97d10162b28ff"
+  },
+  "pago": 1000,
+  "estado": 1,
+  "idFactura": "5fc6cb0b08344341c9da95ac",
+  "_class": "com.practica.instancias_mongo.domain.Pago"
+}]

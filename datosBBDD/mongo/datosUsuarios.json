@@ -1,0 +1,66 @@
+[{
+  "_id": {
+    "$oid": "5fc63cd0d30a26761a032925"
+  },
+  "username": "user",
+  "password": "{bcrypt}$2a$10$c.9ql2TJ0PsiNaQ/CiUMsegG5rbmCslZPt95JbssbFHXSo8XgRg2a",
+  "active": true,
+  "roles": [
+    {
+      "role": "ROLE_USER"
+    }
+  ],
+  "_class": "com.practica.gateway.domain.User"
+},{
+  "_id": {
+    "$oid": "5fc6c80c20e47b05ef3e3599"
+  },
+  "username": "visita",
+  "password": "{bcrypt}$2a$10$7bEh7ZXLe97SPmeSfuTRxetReNHmVxSxs1q8SHa0TDHyv2Qflzg0q",
+  "active": true,
+  "roles": [
+    {
+      "role": "ROLE_VISITA"
+    }
+  ],
+  "_class": "com.practica.gateway.domain.User"
+},{
+  "_id": {
+    "$oid": "5fc6c83720e47b05ef3e359b"
+  },
+  "username": "factura",
+  "password": "{bcrypt}$2a$10$7xEHJZsZe2G/Vghpc7L0cuR2NyGyNFX5r.9hLGz8urSklhLPTV0n2",
+  "active": true,
+  "roles": [
+    {
+      "role": "ROLE_FACTURA"
+    }
+  ],
+  "_class": "com.practica.gateway.domain.User"
+},{
+  "_id": {
+    "$oid": "5fc6c85f20e47b05ef3e359c"
+  },
+  "username": "cliente",
+  "password": "{bcrypt}$2a$10$b7gP/Jxdya349htCQd5pSOCPudTzEYbt4PLDvYViYrvut93OHXFfK",
+  "active": true,
+  "roles": [
+    {
+      "role": "ROLE_CLIENTE"
+    }
+  ],
+  "_class": "com.practica.gateway.domain.User"
+},{
+  "_id": {
+    "$oid": "5fc6c89120e47b05ef3e359d"
+  },
+  "username": "pago",
+  "password": "{bcrypt}$2a$10$qq/4MjNohWoR4QabUaex/.PTX7YwNa3u9.BF092vwsK.gryqKkYF.",
+  "active": true,
+  "roles": [
+    {
+      "role": "ROLE_PAGO"
+    }
+  ],
+  "_class": "com.practica.gateway.domain.User"
+}]

@@ -1,0 +1,11 @@
+[{
+  "_id": {
+    "$oid": "5fc6cb0b08344341c9da95ac"
+  },
+  "idCliente": 1,
+  "importe": 2000,
+  "formaPago": 2,
+  "lineaFactura": 1,
+  "estado": 2,
+  "_class": "com.practica.instancias_mongo.domain.Factura"
+}]
