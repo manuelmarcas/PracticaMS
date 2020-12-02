@@ -1,0 +1,1447 @@
+{
+	"info": {
+		"_postman_id": "50cafce1-bafa-4b7e-8ea1-f86cdf4f9fbb",
+		"name": "PRACTICA MICROSERVICIOS",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "MS CLIENTE",
+			"item": [
+				{
+					"name": "Busca clientes por ciudad y nombre",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/cliente/Zamora/Manuel",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"cliente",
+								"Zamora",
+								"Manuel"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar Cliente",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 2,\r\n    \"nombre\": \"Dani\",\r\n    \"direccion\": {\r\n        \"id\": 2,\r\n        \"ciudad\": \"Salamanca\",\r\n        \"calle\": \"churruca\",\r\n        \"numero\": 68\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/cliente/eliminar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"cliente",
+								"eliminar"
+							]
+						},
+						"description": "Elimina un cliente y su dirección especificado en el body."
+					},
+					"response": []
+				},
+				{
+					"name": "Modificar Cliente",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 2,\r\n    \"nombre\": \"Daniel\",\r\n    \"estado\": 2,\r\n    \"direccion\": {\r\n        \"id\": 2,\r\n        \"ciudad\": \"Salamanca\",\r\n        \"calle\": \"Filiberto\",\r\n        \"numero\": 37,\r\n        \"idCliente\": 2\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/cliente/modificar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"cliente",
+								"modificar"
+							]
+						},
+						"description": "Modifica un Cliente y su dirección especicando los nuevos datos en el body."
+					},
+					"response": []
+				},
+				{
+					"name": "Guardar Cliente",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Manuel\",\r\n    \"estado\": 2,\r\n    \"direccion\": {\r\n        \"ciudad\": \"Zamora\",\r\n        \"calle\": \"churruca\",\r\n        \"numero\": 68\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/cliente/guardar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"cliente",
+								"guardar"
+							]
+						},
+						"description": "Guarda un nuevo cliente en la base de datos con los datos especificados en el body."
+					},
+					"response": []
+				},
+				{
+					"name": "Muestra Clientes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/cliente/todos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"cliente",
+								"todos"
+							]
+						},
+						"description": "Muestra todos los clientes con sus direcciones almacenados en la base de datos."
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "MS VISITA",
+			"item": [
+				{
+					"name": "Busca las visitas con un determinado estado",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/visita/estado/0",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"visita",
+								"estado",
+								"0"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Busca las visitas de un cliente",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/visita/cliente/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"visita",
+								"cliente",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar Visita",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/visita/eliminar/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"visita",
+								"eliminar",
+								"3"
+							]
+						},
+						"description": "Elimina una visita dado su id."
+					},
+					"response": []
+				},
+				{
+					"name": "Modificar Visita",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": 1,\r\n    \"fecha\": \"2019-11-14\",\r\n    \"idCliente\": 1,\r\n    \"importe\": 300\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/visita/modificar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"visita",
+								"modificar"
+							]
+						},
+						"description": "Modifica una visita con los nuevos datos del body.\r\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Guardar Visita",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fecha\": \"2002-07-10\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/visita/guardar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"visita",
+								"guardar"
+							]
+						},
+						"description": "Guarda una visita en la base de datos con los datos especificados en el body."
+					},
+					"response": []
+				},
+				{
+					"name": "Mostrar Visitas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://172.28.144.1:8081/api/visita/todos",
+							"protocol": "http",
+							"host": [
+								"172",
+								"28",
+								"144",
+								"1"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"visita",
+								"todos"
+							]
+						},
+						"description": "Muestra todas las visitas."
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "MS FACTURA",
+			"item": [
+				{
+					"name": "Buscar facturas de un importe concreto",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/api/factura/importe/300",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"factura",
+								"importe",
+								"300"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar facturas con un estado concreto",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/api/factura/estado/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"factura",
+								"estado",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar facturas de un cliente",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8082/api/factura/cliente/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"factura",
+								"cliente",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar Factura",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"id\": \"5fbffee091a6cd4782355ec7\",\r\n        \"idCliente\": 55,\r\n        \"lineaFactura\": 4\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/api/factura/eliminar/5fbfff8391a6cd4782355ec8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"factura",
+								"eliminar",
+								"5fbfff8391a6cd4782355ec8"
+							]
+						},
+						"description": "Elimina la Factura especificada en el body."
+					},
+					"response": []
+				},
+				{
+					"name": "Modificar Factura",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"id\": \"5fc68bf51069e662704714d7\",\r\n        \"idCliente\": 1,\r\n        \"importe\": 3000,\r\n        \"formaPago\": 2\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/api/factura/modificar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"factura",
+								"modificar"
+							]
+						},
+						"description": "Modifica los datos de una factura."
+					},
+					"response": []
+				},
+				{
+					"name": "Guardar Factura",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idCliente\": 1,\r\n    \"importe\": 2000,\r\n    \"formaPago\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8082/api/factura/guardar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"factura",
+								"guardar"
+							]
+						},
+						"description": "Guarda una Factura con los datos especificados en el body."
+					},
+					"response": []
+				},
+				{
+					"name": "Mostrar Facturas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://172.28.144.1:8082/api/factura/todos",
+							"protocol": "http",
+							"host": [
+								"172",
+								"28",
+								"144",
+								"1"
+							],
+							"port": "8082",
+							"path": [
+								"api",
+								"factura",
+								"todos"
+							]
+						},
+						"description": "Muestra todas las facturas guardadas en mongo."
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "MS PAGO",
+			"item": [
+				{
+					"name": "Busca pagos de una factura",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8083/api/pago/factura/5fc3b9b668ac3b2ec091035e",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"api",
+								"pago",
+								"factura",
+								"5fc3b9b668ac3b2ec091035e"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar Pago",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"5fc0066793ede648e0438077\",\r\n    \"pago\": 250.0,\r\n    \"idFactura\": \"2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8083/api/pago/eliminar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"api",
+								"pago",
+								"eliminar"
+							]
+						},
+						"description": "Elimina un Pago especificándolo en el body."
+					},
+					"response": []
+				},
+				{
+					"name": "Modificar Pago",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"id\": \"5fc68c98c83d5d1d4a3ab965\",\r\n        \"estado\": \"2\"\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8083/api/pago/modificar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"api",
+								"pago",
+								"modificar"
+							]
+						},
+						"description": "Modifica un Pago con los nuevos datos dados."
+					},
+					"response": []
+				},
+				{
+					"name": "Guardar Pago",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"pago\": 250,\r\n    \"idFactura\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8083/api/pago/guardar",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8083",
+							"path": [
+								"api",
+								"pago",
+								"guardar"
+							]
+						},
+						"description": "Guarda en mongo el nuevo pago con los datos dados en el body."
+					},
+					"response": []
+				},
+				{
+					"name": "Mostrar Pagos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://172.28.144.1:8083/api/pago/todos",
+							"protocol": "http",
+							"host": [
+								"172",
+								"28",
+								"144",
+								"1"
+							],
+							"port": "8083",
+							"path": [
+								"api",
+								"pago",
+								"todos"
+							]
+						},
+						"description": "Muestra todos los Pagos almacenados en la base de datos de mongo."
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "GATEWAY",
+			"item": [
+				{
+					"name": "CREAR ROLES",
+					"item": [
+						{
+							"name": "Crear usuario con rol VISITA",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8090/crear/visita/visita/ROLE_VISITA",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8090",
+									"path": [
+										"crear",
+										"visita",
+										"visita",
+										"ROLE_VISITA"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Crear usuario con rol PAGO",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8090/crear/pago/pago/ROLE_PAGO",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8090",
+									"path": [
+										"crear",
+										"pago",
+										"pago",
+										"ROLE_PAGO"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Crear usuario con rol FACTURA",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8090/crear/factura/factura/ROLE_FACTURA",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8090",
+									"path": [
+										"crear",
+										"factura",
+										"factura",
+										"ROLE_FACTURA"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Crear usuario con rol CLIENTE",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8090/crear/cliente/cliente/ROLE_CLIENTE",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8090",
+									"path": [
+										"crear",
+										"cliente",
+										"cliente",
+										"ROLE_CLIENTE"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Mostrar facturas de un importe concreto",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "factura",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "factura",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://172.28.144.1:8090/factura/api/factura/importe/2000",
+									"protocol": "http",
+									"host": [
+										"172",
+										"28",
+										"144",
+										"1"
+									],
+									"port": "8090",
+									"path": [
+										"factura",
+										"api",
+										"factura",
+										"importe",
+										"2000"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Mostrar las visitas con un determinado estado",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "visita",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "visita",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://172.28.144.1:8090/visita/api/visita/estado/0",
+									"protocol": "http",
+									"host": [
+										"172",
+										"28",
+										"144",
+										"1"
+									],
+									"port": "8090",
+									"path": [
+										"visita",
+										"api",
+										"visita",
+										"estado",
+										"0"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Mostrar clientes por ciudad y nombre",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "cliente",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "cliente",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://172.28.144.1:8090/cliente/api/cliente/Zamora/Manuel",
+							"protocol": "http",
+							"host": [
+								"172",
+								"28",
+								"144",
+								"1"
+							],
+							"port": "8090",
+							"path": [
+								"cliente",
+								"api",
+								"cliente",
+								"Zamora",
+								"Manuel"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Guardar un usuario",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "cliente",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "cliente",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"nombre\": \"Laura\",\r\n    \"estado\": 2,\r\n    \"direccion\": {\r\n        \"ciudad\": \"Salamanca\",\r\n        \"calle\": \"Cervantes\",\r\n        \"numero\": 1\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://172.28.144.1:8090/cliente/api/cliente/guardar",
+							"protocol": "http",
+							"host": [
+								"172",
+								"28",
+								"144",
+								"1"
+							],
+							"port": "8090",
+							"path": [
+								"cliente",
+								"api",
+								"cliente",
+								"guardar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mostrar las visitas de un cliente",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "visita",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "visita",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8090/visita/api/visita/cliente/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"visita",
+								"api",
+								"visita",
+								"cliente",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear una visita no facturada",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "visita",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "visita",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"fecha\": \"2002-07-10\",\r\n    \"importe\": 500,\r\n    \"idCliente\": 2,\r\n    \"estado\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://172.28.144.1:8090/visita/api/visita/guardar",
+							"protocol": "http",
+							"host": [
+								"172",
+								"28",
+								"144",
+								"1"
+							],
+							"port": "8090",
+							"path": [
+								"visita",
+								"api",
+								"visita",
+								"guardar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mostrar facturas con un estado concreto",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "factura",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "factura",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://172.28.144.1:8090/factura/api/factura/estado/2",
+							"protocol": "http",
+							"host": [
+								"172",
+								"28",
+								"144",
+								"1"
+							],
+							"port": "8090",
+							"path": [
+								"factura",
+								"api",
+								"factura",
+								"estado",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mostrar facturas de un cliente",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "factura",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "factura",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://172.28.144.1:8090/factura/api/factura/cliente/1",
+							"protocol": "http",
+							"host": [
+								"172",
+								"28",
+								"144",
+								"1"
+							],
+							"port": "8090",
+							"path": [
+								"factura",
+								"api",
+								"factura",
+								"cliente",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mostrar Pagos de una Factura",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "pago",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "pago",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://172.28.144.1:8090/pago/api/pago/factura/5fc6cb0b08344341c9da95ac",
+							"protocol": "http",
+							"host": [
+								"172",
+								"28",
+								"144",
+								"1"
+							],
+							"port": "8090",
+							"path": [
+								"pago",
+								"api",
+								"pago",
+								"factura",
+								"5fc6cb0b08344341c9da95ac"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modifica el estado de un Pago",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "pago",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "pago",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\": \"5fc6cb0b3ff97d10162b28fe\",\r\n    \"estado\": \"2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://172.28.144.1:8090/pago/api/pago/modificar",
+							"protocol": "http",
+							"host": [
+								"172",
+								"28",
+								"144",
+								"1"
+							],
+							"port": "8090",
+							"path": [
+								"pago",
+								"api",
+								"pago",
+								"modificar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Modificar una factura pendiente",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "factura",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "factura",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "    {\r\n        \"id\": \"5fc6cb0b08344341c9da95ac\",\r\n        \"idCliente\": 1,\r\n        \"importe\": 3000,\r\n        \"formaPago\": 3\r\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://172.28.144.1:8090/factura/api/factura/modificar",
+							"protocol": "http",
+							"host": [
+								"172",
+								"28",
+								"144",
+								"1"
+							],
+							"port": "8090",
+							"path": [
+								"factura",
+								"api",
+								"factura",
+								"modificar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Crear Factura con su Visita y sus Pagos",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "factura",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "factura",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"idCliente\": 1,\r\n    \"importe\": 2000,\r\n    \"formaPago\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://172.28.144.1:8090/factura/api/factura/guardar",
+							"protocol": "http",
+							"host": [
+								"172",
+								"28",
+								"144",
+								"1"
+							],
+							"port": "8090",
+							"path": [
+								"factura",
+								"api",
+								"factura",
+								"guardar"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mostrar pagos",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "pago",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "pago",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://172.28.144.1:8090/pago/api/pago/todos",
+							"protocol": "http",
+							"host": [
+								"172",
+								"28",
+								"144",
+								"1"
+							],
+							"port": "8090",
+							"path": [
+								"pago",
+								"api",
+								"pago",
+								"todos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mostrar facturas",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "factura",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "factura",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://172.28.144.1:8090/factura/api/factura/todos",
+							"protocol": "http",
+							"host": [
+								"172",
+								"28",
+								"144",
+								"1"
+							],
+							"port": "8090",
+							"path": [
+								"factura",
+								"api",
+								"factura",
+								"todos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mostrar visitas",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "visita",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "visita",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8090/visita/api/visita/todos",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8090",
+							"path": [
+								"visita",
+								"api",
+								"visita",
+								"todos"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Mostrar Clientes",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "cliente",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "cliente",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://172.28.144.1:8090/cliente/api/cliente/todos",
+							"protocol": "http",
+							"host": [
+								"172",
+								"28",
+								"144",
+								"1"
+							],
+							"port": "8090",
+							"path": [
+								"cliente",
+								"api",
+								"cliente",
+								"todos"
+							]
+						},
+						"description": "Muestra clientes desde el Gateway."
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
