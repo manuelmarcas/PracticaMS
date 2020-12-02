@@ -14,7 +14,6 @@ services:
     ports:
       - "8888:8888"
 
-
   mysql:
     image: mysql
     container_name: mysql1
@@ -24,7 +23,7 @@ services:
     ports:
       - "3307:3306"
     volumes:
-      - C:\var\lib
+      - C:\data-mysql:/var/lib/mysql
 
   db:
     image: mongo
@@ -32,4 +31,59 @@ services:
     ports:
       - "27017:27017"
     volumes:
-      - C:\data\db
+      - C:\data-mongo:/data/db
+
+
+  gateway:
+    image: gateway
+    container_name: gateway-server1
+    ports:
+      - "9090"
+
+  admin:
+    image: admin
+    container_name: admin-server1
+    ports:
+      - "9091"
+
+  hystrix:
+    image: hystrix
+    container_name: hystrix-server1
+    ports:
+      - "9092"
+
+  config:
+    image: config
+    container_name: config-server1
+    ports:
+      - "9093"
+
+  turbine:
+    image: turbine
+    container_name: turbine-server1
+    ports:
+      - "9094"
+
+  cliente:
+    image: cliente
+    container_name: cliente-service1
+    ports:
+      - "8080"
+
+  visita:
+    image: visita
+    container_name: visita-service1
+    ports:
+      - "8081"
+
+  factura:
+    image: factura
+    container_name: factura-service1
+    ports:
+      - "8082"
+
+  pago:
+    image: pago
+    container_name: pago-service1
+    ports:
+      - "8083"
